@@ -3,5 +3,6 @@ class Crime < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :currency, presence: true
-  validates :category, inclusion: { in: %w(small medium large), message: "%{value} is not a valid crime category" }
+  CATEGORIES = ["Murder", "Mass Murder", "Destruction", "Illegal trade", "Thief", "Black Mailing", "Intimidation"]
+  validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid crime category" }
 end
