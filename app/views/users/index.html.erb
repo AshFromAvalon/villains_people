@@ -4,15 +4,17 @@
   </div>
 </div>
 <div class="container">
-  <%= @users.each do |user|  %>
-    <div class="card">
-      <img class="card-img-top" src="#" alt="Card image">
-      <div class="card-body">
-        <h5 class="card-title"><%= user.user_name %></h5>
-        <h5 class="card-title"><%= user.alias %></h5>
-        <p class="card-text"><%= user.description %></p>
-        <a href="#" class="btn btn-primary">More infos</a>
+  <div class="users-cards d-flex">
+    <% @users.each do |user|  %>
+      <div class="card">
+        <img class="card-img-top" src="https://i.pinimg.com/originals/e0/4f/66/e04f6668cfae78d390c29c61a372a927.jpg" alt="Card image">
+        <div class="card-body">
+          <h3 class="card-title"><%= user.user_name %></h3>
+          <h5 class="card-title"><%= user.alias %></h5>
+          <p class="card-text"><%= user.description %></p>
+          <a href="#" class="btn btn-primary">More infos</a>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
