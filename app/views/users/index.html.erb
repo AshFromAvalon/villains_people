@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="col-12">
+    <h1 class='m-3 text-center'>Users index page</h1>
+  </div>
+</div>
+<div class="container">
+  <%= @users.each do |user|  %>
+    <div class="card">
+      <h3><%= user.user_name %></h3>
+    </div>
+  <% end %>
+</div>
