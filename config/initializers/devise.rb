@@ -25,7 +25,6 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'contact@villains-people.com'
-  #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
