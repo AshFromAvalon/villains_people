@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+  <h1>List of all availabel crimes</h1>
+  <%= link_to "Add crime", new_crime_path %>
+  </div>
+  <ul class="list-group">
+  <% @crimes.each do |crime| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <%= crime.name %>
+      <div>
+        <span class="badge badge-primary badge-pill"><%= crime.user.user_name %></span>
+        <span class="badge badge-primary badge-pill"><%= crime.category %></span>
+        <span class="badge badge-primary badge-pill"><%= crime.price %> <%= crime.currency %></span>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+</div>
