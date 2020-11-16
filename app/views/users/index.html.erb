@@ -3,6 +3,8 @@
     <h1 class='m-3 text-center'>Users index page</h1>
   </div>
 </div>
+
+ <!--
 <div class="container">
   <div class="users-cards d-flex">
     <% @users.each do |user|  %>
@@ -15,6 +17,18 @@
           <a href="#" class="btn btn-primary">More infos</a>
         </div>
       </div>
+    <% end %>
+  </div>
+-->
+
+
+</div>
+<div class="container">
+  <div class="villains-cards">
+    <% @users.each do |user| %>
+    <a href="#" class="villain-card">
+      <span><%= user.user_name %></span>
+    </a>
     <% end %>
   </div>
 </div>

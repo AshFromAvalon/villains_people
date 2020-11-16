@@ -1,0 +1,31 @@
+.villains-cards {
+  display: flex;
+}
+.villain-card {
+  width: 100%;
+  height: 380px;
+  background-color: #bb4848;;
+  background-image: url("https://i.pinimg.com/originals/e0/4f/66/e04f6668cfae78d390c29c61a372a927.jpg");
+  background-position: center;
+  background-size: cover;
+  margin: 0 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 32px;
+    text-align: center;
+    color: #FFF;
+    background-color: rgba(0,0,0,.5);
+    padding: 12px 24px;
+    opacity: 0;
+    transition-duration: .3s;
+  }
+
+  &:hover {
+    span {
+      opacity: 1;
+    }
+  }
+}
