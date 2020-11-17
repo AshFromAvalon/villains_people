@@ -26,11 +26,9 @@
 <div class="container">
   <div class="villains-cards">
     <% @users.each do |user| %>
-      <% if user.crimes.present? %>
-        <a href="#" class="villain-card">
-          <span><%= user.user_name %></span>
-        </a>
-      <% end %>
+      <a href="#" class="villain-card">
+        <span><%= link_to user.user_name, user_path(user) %></span>
+      </a>
     <% end %>
   </div>
 </div>
