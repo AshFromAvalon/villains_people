@@ -23,6 +23,7 @@
             <span class="badge badge-pill badge-danger" ></span>
         </li>
         <li class="nav-item dropdown">
+          <!-- Display the current user photo if it has one -->
           <% if current_user.photo.attached? %>
             <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
