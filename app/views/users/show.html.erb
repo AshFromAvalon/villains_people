@@ -1,19 +1,45 @@
-<div class='container'>
-<h1><b>username: </b><%= @user.user_name %><br></h1>
-<b>alias: </b><%= @user.alias %><br>
-<% if @user.photo.attached? %>
-  <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-<b>job: </b><%= @user.job_title %><br>
-<b>desc: </b><%= @user.description %><br>
-<br>
-<b>Crimes</b><br><br>
-    <% @user.crimes.each do |crime| %>
-  <b>name: </b><%= crime.name %><br>
-  <b>category: </b><%= crime.category %><br>
-  <b>price: </b><%= crime.price %>
-  <b>currency: </b><%= crime.currency %><br>
-  <%= link_to "order crime", new_crime_order_path(crime) %><br><br>
-    <% end %>
+<div class="banner banner-show" style="<% if @user.photo.attached? %>
+                                              background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
+                                              url('<%= cl_image_path @user.photo.key, height: 1080, width: 1920, crop: :fill %>')
+                                       <% else %>
+                                              background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
+                                              url('https://static1.cbrimages.com/wordpress/wp-content/uploads/2019/11/Meanest-Supervillains-Of-All-Time.jpg')
+                                       <% end %>">
+    <div class="container">
+        <h1 class="text-center">
+          <%= @user.alias %>
+        </h1>
+    </div>
 </div>
 
+<div class="container user-infos mt-5">
+  <div class="row">
+    <div class="col-9 d-flex flex-wrap">
+      <h2 class="mb-4 col-12">Crimes proposed</h2>
+
+      <% @user.crimes.each do |crime| %>
+        <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+          <div>
+            <span class="badge badge-pill badge-dark mb-3"><%= crime.category %></span>
+            <p><strong><%= crime.name %></strong></p>
+          </div>
+          <div>
+            <h6 class="price"><strong>Price:</strong></h6>
+            <p><%= crime.price %> <%= crime.currency %></p>
+            <div>
+              <%= link_to "Order", new_crime_order_path(crime), class:'mt-2 btn btn-outline-primary rounded-pill flex-bottom' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-3">
+      <h2 class="mb-4">More infos</h2>
+      <h6>Known as</h6></h4>
+      <p><%= @user.job_title %></p>
+      <h6>Description</h6></h4>
+      <p><%= @user.description %></p>
+    </div>
+  </div>
+</div>
