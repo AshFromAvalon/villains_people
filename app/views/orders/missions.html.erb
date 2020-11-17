@@ -3,6 +3,7 @@
   <h1>My crimes</h1>
   </div>
 
+  <!-- display all missions that are AWAITING APPROVAL -->
   <div class="d-flex align-items-center">
     <h3>Crimes requests</h3>
     <span class="badge badge-info"><%= @missions_tovalidate.count %></span>
@@ -27,6 +28,7 @@
   </ul>
   <br>
 
+  <!-- display all missions that are TO DO -->
   <div class="d-flex align-items-center">
     <h3>To do</h3>
     <span class="badge badge-info"><%= @missions_tofinish.count %></span>
@@ -51,6 +53,7 @@
   </ul>
   <br>
 
+  <!-- display all missions that are TO PAY -->
   <div class="d-flex align-items-center">
     <h3>Crimes avaiting payment</h3>
     <span class="badge badge-info"><%= @missions_topay.count %></span>
@@ -75,6 +78,7 @@
   </ul>
   <br>
 
+  <!-- display all missions that are ARCHIVED -->
   <div class="d-flex align-items-center">
     <h3>Archives</h3>
     <span class="badge badge-info"><%= @missions_archived.count %></span>
