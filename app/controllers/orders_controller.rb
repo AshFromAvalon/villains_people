@@ -21,11 +21,52 @@ class OrdersController < ApplicationController
     end
   end
 
+  def missions
+    @missions_tovalidate = []
+    @missions_tofinish = []
+    @missions_topay = []
+    @missions_archived = []
+    Order.all.each do |order|
+      if order.crime.user == current_user
+        if order.paid
+          @missions_archived << order
+        elsif order.done
+          @missions_topay << order
+        elsif order.validated
+          @missions_tofinish << order
+        else
+          @missions_tovalidate << order
+        end
+      end
+    end
+  end
+
+  def validate
+    set_order
+    @order.validated = true
+    @order.save
+    redirect_to missions_orders_path
+  end
+
+  def pay
+    set_order
+    @order.paid = true
+    @order.save
+    redirect_to missions_orders_path
+  end
+
+  def done
+    set_order
+    @order.done = true
+    @order.save
+    redirect_to missions_orders_path
+  end
+
   # private methods
   private
 
   def set_order
-    @order = order.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def order_params

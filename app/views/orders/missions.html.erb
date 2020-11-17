@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+  <h1>My crimes</h1>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <h3>Crimes requests</h3>
+    <span class="badge badge-info"><%= @missions_tovalidate.count %></span>
+  </div>
+  <ul class="list-group">
+    <% if @missions_tovalidate.empty? %>
+      <p>No crimes to validate</p>
+    <% else %>
+      <% @missions_tovalidate.each do |mission| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <h4><%= mission.crime.name %></h4>
+          </div>
+          <div>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.category %></span>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.price %> <%= mission.crime.currency %></span>
+            <%= link_to "Accept crime", validate_order_path(mission), method: :patch, class: "badge badge-pill badge-warning", data: { confirm: "Are you sure?" }%>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <br>
+
+  <div class="d-flex align-items-center">
+    <h3>To do</h3>
+    <span class="badge badge-info"><%= @missions_tofinish.count %></span>
+  </div>
+  <ul class="list-group">
+    <% if @missions_tofinish.empty? %>
+      <p>No crimes to finish</p>
+    <% else %>
+      <% @missions_tofinish.each do |mission| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <h4><%= mission.crime.name %></h4>
+          </div>
+          <div>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.category %></span>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.price %> <%= mission.crime.currency %></span>
+            <%= link_to "Crime done", done_order_path(mission), method: :patch, class: "badge badge-pill badge-primary", data: { confirm: "Are you sure?" }%>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <br>
+
+  <div class="d-flex align-items-center">
+    <h3>Crimes avaiting payment</h3>
+    <span class="badge badge-info"><%= @missions_topay.count %></span>
+  </div>
+  <ul class="list-group">
+    <% if @missions_topay.empty? %>
+      <p>No crimes awaiting payment</p>
+    <% else %>
+      <% @missions_topay.each do |mission| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <h4><%= mission.crime.name %></h4>
+          </div>
+          <div>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.category %></span>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.price %> <%= mission.crime.currency %></span>
+            <%= link_to "Crime paid", pay_order_path(mission), method: :patch, class: "badge badge-pill badge-success", data: { confirm: "Are you sure?" }%>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <br>
+
+  <div class="d-flex align-items-center">
+    <h3>Archives</h3>
+    <span class="badge badge-info"><%= @missions_archived.count %></span>
+  </div>
+  <ul class="list-group">
+    <% if @missions_archived.empty? %>
+      <p>No crimes in Archives</p>
+    <% else %>
+      <% @missions_archived.each do |mission| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <h4><%= mission.crime.name %></h4>
+          </div>
+          <div>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.category %></span>
+            <span class="badge badge-secondary badge-pill"><%= mission.crime.price %> <%= mission.crime.currency %></span>
+            <span></span>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
