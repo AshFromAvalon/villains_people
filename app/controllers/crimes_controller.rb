@@ -1,4 +1,5 @@
 class CrimesController < ApplicationController
+  before_action :set_crime, only: [:edit, :update, :destroy]
 
   def index
     @crimes = Crime.all
@@ -17,6 +18,23 @@ class CrimesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @crime.update(crime_params)
+      flash[:alert] = 'crime changed'
+      redirect_to crimes_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @crime.destroy
+    redirect_to crimes_path
   end
 
   # private methods
