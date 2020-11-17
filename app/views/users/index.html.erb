@@ -5,9 +5,20 @@
 </div>
 
 <%= form_tag filter_index_path do %>
-  <%= select_tag :query, options_for_select(Crime::CATEGORIES) %>
+
+  <!-- with a dropdown -->
+  <%#= select_tag :query, options_for_select(Crime::CATEGORIES, params[:query]) %>
+
+  <!-- With checkboxes -->
+
+  <% Crime::CATEGORIES.each do |crime| %>
+    <%= check_box_tag crime, crime %>
+    <%= h crime %>
+  <% end %>
   <%= submit_tag "search" %>
+
 <% end %>
+
 
 </div>
 <div class="container">
