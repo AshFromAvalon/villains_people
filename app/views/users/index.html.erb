@@ -4,23 +4,10 @@
   </div>
 </div>
 
- <!--
-<div class="container">
-  <div class="users-cards d-flex">
-    <% @users.each do |user|  %>
-      <div class="card">
-        <img class="card-img-top" src="https://i.pinimg.com/originals/e0/4f/66/e04f6668cfae78d390c29c61a372a927.jpg" alt="Card image">
-        <div class="card-body">
-          <h3 class="card-title"><%= user.user_name %></h3>
-          <h5 class="card-title"><%= user.alias %></h5>
-          <p class="card-text"><%= user.description %></p>
-          <a href="#" class="btn btn-primary">More infos</a>
-        </div>
-      </div>
-    <% end %>
-  </div>
--->
-
+<%= form_tag filter_index_path do %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "search" %>
+<% end %>
 
 </div>
 <div class="container">

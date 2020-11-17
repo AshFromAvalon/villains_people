@@ -5,6 +5,14 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users =  User.includes(:crimes).where.not('crimes.id' => nil)
+    if params[:query]
+      @users =  User.includes(:crimes).where('crimes.category' => params[:query])
+    else
+      @users =  User.includes(:crimes).where.not('crimes.id' => nil)
+    end
+  end
+
+  def filter_index
+    redirect_to action: "index", query: params[:query]
   end
 end

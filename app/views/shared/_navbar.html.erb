@@ -14,8 +14,13 @@
         <li class="nav-item active">
           <%= link_to "Find a villain", users_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "My orders", orders_path, class: "nav-link" %>
+        <li class="nav-item d-flex flex-row align-items-center ">
+            <%= link_to "My orders", orders_path, class: "nav-link" %>
+            <span class="badge badge-pill badge-success" ><%= current_user.orders.count %></span>
+        </li>
+        <li class="nav-item d-flex flex-row align-items-center ">
+            <%= link_to "My crimes", missions_orders_path, class: "nav-link" %>
+            <span class="badge badge-pill badge-danger" ></span>
         </li>
         <li class="nav-item dropdown">
           <% if @user.photo.attached? %>
