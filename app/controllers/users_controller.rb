@@ -5,6 +5,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users =  User.includes(:crimes).where.not('crimes.id' => nil)
   end
 end
