@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :crimes
   has_many :orders
+  has_one_attached :photo
   validates :user_name, presence: true, uniqueness: true
   # validates :alias, uniqueness: true
 end
