@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :users, only: [:index, :show] do
     member do
-      get :crimes
+      get :crime
     end
   end
   resources :orders, only: [:index]
