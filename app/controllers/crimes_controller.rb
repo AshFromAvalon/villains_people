@@ -1,4 +1,5 @@
 class CrimesController < ApplicationController
+  before_action :set_crime, only: [:edit, :update]
 
   def index
     @crimes = Crime.all
@@ -16,6 +17,18 @@ class CrimesController < ApplicationController
       redirect_to user_path(current_user)
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @crime.update(crime_params)
+      flash[:alert] = 'crime changed'
+      redirect_to crimes_path
+    else
+      render :edit
     end
   end
 

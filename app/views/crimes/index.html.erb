@@ -13,6 +13,7 @@
         <span class="badge badge-primary badge-pill"><%= crime.price %> <%= crime.currency %></span>
       </div>
     </li>
+    <%= link_to 'Edit', edit_crime_path(crime), class: 'btn btn-outline-primary' %>
   <% end %>
   </ul>
 </div>
