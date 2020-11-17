@@ -5,18 +5,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    #if the user has filtered
     if params[:query]
-      #params[:query] is an array of crimes selected via checkboxes
-      params[:query].each_with_index do |crime, index|
-        if index == 0
-          #to instantiate an active record collection
-          @users = User.includes(:crimes).where('crimes.category' => crime)
-        else
-          #adds other crimes selected to the collection
-          @users.merge(User.includes(:crimes).where('crimes.category' => crime))
-        end
-      end
+      @users = User.includes(:crimes).where('crimes.category' => params[:query])
     else
       @users =  User.includes(:crimes).where.not('crimes.id' => nil)
     end
