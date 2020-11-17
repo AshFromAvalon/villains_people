@@ -1,4 +1,5 @@
-<b>username: </b><%= @user.user_name %><br>
+<div class='container'>
+<h1><b>username: </b><%= @user.user_name %><br></h1>
 <b>alias: </b><%= @user.alias %><br>
 <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
 <b>job: </b><%= @user.job_title %><br>
@@ -9,6 +10,8 @@
   <b>name: </b><%= crime.name %><br>
   <b>category: </b><%= crime.category %><br>
   <b>price: </b><%= crime.price %>
-  <b>currency: </b><%= crime.currency %>
+  <b>currency: </b><%= crime.currency %><br>
+  <%= link_to "order crime", new_crime_order_path(crime) %><br><br>
     <% end %>
+</div>
 

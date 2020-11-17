@@ -4,10 +4,6 @@ class CrimesController < ApplicationController
     @crimes = Crime.all
   end
 
-  def show
-    set_crime
-  end
-
   def new
     @crime = Crime.new
   end

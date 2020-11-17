@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+  <h1>My ongoing orders</h1>
+  </div>
+  <ul class="list-group">
+  <% @orders.each do |order| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <h4><%= order.crime.name %></h4>
+      </div>
+      <div>
+        <span class="badge badge-primary badge-pill">by <%= order.crime.user.user_name %></span>
+        <span class="badge badge-primary badge-pill"><%= order.crime.category %></span>
+        <span class="badge badge-primary badge-pill"><%= order.crime.price %> <%= order.crime.currency %></span>
+        <span class="badge badge-primary badge-pill"><%= order.validated %></span>
+        <span class="badge badge-primary badge-pill"><%= order.done %></span>
+        <span class="badge badge-primary badge-pill"><%= order.paid %></span>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+</div>
