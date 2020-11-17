@@ -23,8 +23,9 @@
             <span class="badge badge-pill badge-danger" ></span>
         </li>
         <li class="nav-item dropdown">
-          <% if @user.photo.attached? %>
-            <%= cl_image_tag @user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <!-- Display the current user photo if it has one -->
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
             <%= cl_image_tag "https://res.cloudinary.com/dydj5k25d/image/upload/v1605627577/Profile_avatar_placeholder_large_znjuuz.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
