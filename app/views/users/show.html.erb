@@ -1,7 +1,9 @@
 <div class='container'>
 <h1><b>username: </b><%= @user.user_name %><br></h1>
 <b>alias: </b><%= @user.alias %><br>
-<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+<% if @user.photo.attached? %>
+  <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 <b>job: </b><%= @user.job_title %><br>
 <b>desc: </b><%= @user.description %><br>
 <br>
