@@ -5,7 +5,7 @@
 </div>
 
 <%= form_tag filter_index_path do %>
-  <%= text_field_tag :query, params[:query] %>
+  <%= select_tag :query, options_for_select(Crime::CATEGORIES) %>
   <%= submit_tag "search" %>
 <% end %>
 
