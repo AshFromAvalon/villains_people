@@ -26,7 +26,11 @@
 <div class="container">
   <div class="villains-cards">
     <% @users.each do |user| %>
-      <a href="#" class="villain-card">
+      <% if user.photo.attached? %>
+        <a href="#" class="villain-card" style="background-image: url(<%= cl_image_path user.photo.key, height: 300, width: 400, crop: :fill %>);">
+      <% else %>
+        <a href="#" class="villain-card" style="background-image: url('https://i.pinimg.com/originals/9f/c2/e8/9fc2e8646f9d363edb5b746bcb77ef85.png');">
+      <% end %>
         <span><%= link_to user.user_name, user_path(user) %></span>
       </a>
     <% end %>
