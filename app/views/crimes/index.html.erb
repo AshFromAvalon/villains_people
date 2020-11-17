@@ -14,6 +14,7 @@
       </div>
     </li>
     <%= link_to 'Edit', edit_crime_path(crime), class: 'btn btn-outline-primary' %>
+    <%= link_to 'Delete', crime_path(crime), method: :delete, data: {confirm: 'You are about to delete permamently this crime. Are you sure ?'}, class: 'btn btn-outline-danger' %>
   <% end %>
   </ul>
 </div>
