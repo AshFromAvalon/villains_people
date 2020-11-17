@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
+
   def index
-    @users =  User.all
+    @users =  User.includes(:crimes).where.not('crimes.id' => nil)
   end
 end
