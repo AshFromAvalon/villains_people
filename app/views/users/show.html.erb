@@ -1,5 +1,6 @@
 <b>username: </b><%= @user.user_name %><br>
 <b>alias: </b><%= @user.alias %><br>
+<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
 <b>job: </b><%= @user.job_title %><br>
 <b>desc: </b><%= @user.description %><br>
 <br>
@@ -10,3 +11,4 @@
   <b>price: </b><%= crime.price %>
   <b>currency: </b><%= crime.currency %>
     <% end %>
+
