@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :users, only: [:index, :show]
   resources :orders, only: [:index]
-  resources :crimes, only: [:index, :new, :create] do
+  resources :crimes, except: :show do
     resources :orders, only: [:new, :create]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
