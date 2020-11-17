@@ -17,7 +17,7 @@ class CrimesController < ApplicationController
     @crime.user = current_user
     if @crime.save
       flash[:alert] = 'crime saved'
-      redirect_to new_crime_path
+      redirect_to user_path(current_user)
     else
       render :new
     end
