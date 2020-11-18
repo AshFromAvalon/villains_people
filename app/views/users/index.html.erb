@@ -19,6 +19,15 @@
     <% end %>
   </div>
 
+
+  <!-- Checkboxes -->
+  <% Crime::CATEGORIES.each do |crime| %>
+    <%= check_box_tag crime, crime %>
+    <%= h crime %>
+  <% end %>
+  <%= submit_tag "search" %>
+
+<% end %>
   <div class="villains-cards">
     <% @users.each do |user| %>
       <% if user.photo.attached? %>
