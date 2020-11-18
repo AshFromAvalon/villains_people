@@ -8,6 +8,7 @@
     <h3>Crimes requests</h3>
     <span class="badge badge-info"><%= @missions_tovalidate.count %></span>
   </div>
+
   <ul class="list-group">
     <% if @missions_tovalidate.empty? %>
       <p>No crimes to validate</p>
@@ -55,7 +56,7 @@
 
   <!-- display all missions that are TO PAY -->
   <div class="d-flex align-items-center">
-    <h3>Crimes avaiting payment</h3>
+    <h3>Crimes awaiting payment</h3>
     <span class="badge badge-info"><%= @missions_topay.count %></span>
   </div>
   <ul class="list-group">
