@@ -1,20 +1,48 @@
 <div class="container">
   <div class="d-flex justify-content-between align-items-center">
-  <h1>My ongoing orders</h1>
+  <h1>My orders</h1>
   </div>
+  <h3>Ongoing orders</h3>
   <ul class="list-group">
-  <% @orders.each do |order| %>
+  <% @ongoing_orders.each do |order| %>
     <li class="list-group-item d-flex justify-content-between align-items-center crime-order-items">
       <div>
         <h4><%= order.crime.name %></h4>
       </div>
       <div>
         <span class="badge badge-primary badge-pill">by <%= order.crime.user.user_name %></span>
-        <span class="badge badge-primary badge-pill"><%= order.crime.category %></span>
-        <span class="badge badge-primary badge-pill"><%= order.crime.price %> <%= order.crime.currency %></span>
-        <span class="badge badge-primary badge-pill"><%= order.validated %></span>
-        <span class="badge badge-primary badge-pill"><%= order.done %></span>
-        <span class="badge badge-primary badge-pill"><%= order.paid %></span>
+        <span class="badge badge-secondary badge-pill"><%= order.crime.category %></span>
+        <span class="badge badge-secondary badge-pill"><%= order.crime.price %> <%= order.crime.currency %></span>
+        <% if order.done %>
+          <span class="badge badge-danger badge-pill"><%= order.validated %></span>
+          <%= link_to "cancel", cancel_order_path(order), method: :patch, class: "mt-2 btn btn-outline-danger rounded-pill text-right", data: { confirm: "Are you sure?" }%>
+        <% elsif order.validated %>
+          <span class="badge badge-warning badge-pill"><%= order.validated %></span>
+          <%= link_to "cancel", cancel_order_path(order), method: :patch, class: "mt-2 btn btn-outline-warning rounded-pill text-right", data: { confirm: "Are you sure?" }%>
+        <% else %>
+          <span class="badge badge-success badge-pill"><%= order.validated %></span>
+          <%= link_to "pay", pay_order_path(order), method: :patch, class: "mt-2 btn btn-outline-success rounded-pill text-right", data: { confirm: "Are you sure?" }%>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+  <h3>History</h3>
+  <ul class="list-group">
+  <% @archived_orders.each do |order| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center crime-order-items">
+      <div>
+        <h4><%= order.crime.name %></h4>
+      </div>
+      <div>
+        <span class="badge badge-primary badge-pill">by <%= order.crime.user.user_name %></span>
+        <span class="badge badge-secondary badge-pill"><%= order.crime.category %></span>
+        <span class="badge badge-secondary badge-pill"><%= order.crime.price %> <%= order.crime.currency %></span>
+        <% if order.done %>
+          <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
+        <% else %>
+          <span class="badge badge-dark badge-pill">cancelled</span>
+        <% end %>
       </div>
     </li>
   <% end %>
