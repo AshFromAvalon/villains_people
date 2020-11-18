@@ -37,10 +37,23 @@
 
     <div class="col-3">
       <h2 class="mb-4">More infos</h2>
-      <h6>Known as</h6></h4>
+      <h6>Known as</h6>
       <p><%= @user.job_title %></p>
-      <h6>Description</h6></h4>
+      <h6>Description</h6>
       <p><%= @user.description %></p>
+      <h6>Rating</h6>
+      <% if @user.rating.nil? %>
+        <p>No rating yet</p>
+      <% else %>
+        <% @user.rating.floor.to_i.times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+        <% (5 - @user.rating.floor.to_i).times do %>
+          <i class="far fa-star"></i>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
+
+
