@@ -41,14 +41,14 @@
       <p><%= @user.job_title %></p>
       <h6>Description</h6>
       <p><%= @user.description %></p>
-      <h6>Rating</h6>
-      <% if @review.rating.nil? %>
+      <h6>Average rating</h6>
+      <% if @ratings == [] %>
         <p>No rating yet</p>
       <% else %>
-        <% @user.rating.floor.to_i.times do %>
+        <% @average_rating.floor.to_i.times do %>
           <i class="fas fa-star"></i>
         <% end %>
-        <% (5 - @user.rating.floor.to_i).times do %>
+        <% (5 - @average_rating.floor.to_i).times do %>
           <i class="far fa-star"></i>
         <% end %>
       <% end %>
@@ -61,7 +61,7 @@
       <% @reviews.each do |review| %>
         <div class="card w-100 m-3" id="no-border">
           <div class="review-card">
-            <h5 class="review-title">Review title</h5>
+            <h5 class="review-title"><%= review.title %></h5>
             <p class="crime-name">Rating: <%= review.rating %></p>
             <p class="review-text"><%= review.comment %></p>
           </div>

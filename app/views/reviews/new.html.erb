@@ -2,7 +2,8 @@
 
 
 <%= simple_form_for [@order, @review] do |f| %>
-  <%= f.input :rating %>
+  <%= f.input :title %>
   <%= f.input :comment %>
+  <%= f.input :rating %>
   <%= f.submit link_to 'Post review', order_reviews_path(@order) %>
 <% end %>

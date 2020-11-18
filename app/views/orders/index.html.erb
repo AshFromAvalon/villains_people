@@ -38,7 +38,7 @@
     <% end %>
   </div>
 
-    <h3>Ongoing orders</h3>
+    <h3>Archived orders</h3>
   <div class="d-flex flex-wrap">
     <% @archived_orders.each do |order| %>
       <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
@@ -54,6 +54,11 @@
               <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
             <% else %>
               <span class="badge badge-dark badge-pill">cancelled</span>
+            <% end %>
+            <% if order.done %>
+              <div class='d-flex align-items-center justify-content-between'>
+                <%= link_to "Review", new_order_review_path(order), class: "mt-2 btn btn-outline-primary rounded-pill text-right" %>
+              </div>
             <% end %>
           </div>
         </div>
