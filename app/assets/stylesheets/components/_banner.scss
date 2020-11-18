@@ -2,6 +2,22 @@ body {
   background-color: #282828;
 }
 
+.home-banner {
+  height: 100vh;
+  background-color: rgba(0,0,0,.5);
+  background-size: cover;
+  background-position: center;
+  h1 {
+    font-weight: 900;
+    font-size: 120px;
+    font-family: 'Work Sans';
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .6rem;
+    padding-top: 20vh;
+    padding-bottom: 3rem;
+  }
+}
 
 .banner {
   height: 60vh;
@@ -10,8 +26,6 @@ body {
   color: #fff;
   display: flex;
   align-items: center;
-  font-family: 'Work Sans';
-  font-weight: 900;
 
   h1 {
   font-family: 'Work Sans';
@@ -28,9 +42,11 @@ body {
 }
 
 
+
 .user-infos {
   color: #FFF;
   h4 {
+
     font-weight: bold;
   }
 

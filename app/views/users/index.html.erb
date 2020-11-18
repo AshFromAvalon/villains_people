@@ -1,25 +1,36 @@
-<div class="container">
-  <div class="col-12">
-    <h1 class='m-3 text-center text-white'>Users index page</h1>
+<div class="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/d3327585963513.5d8b73a6567dc.jpg ')">
+  <div class="container">
+    <div class="col-12">
+      <h1>Villains <br>People</h1>
+      <a href="#villains-index" class="btn btn-primary rounded-pill btn-lg mt-5">Find the villain you need</a>
+    </div>
   </div>
 </div>
 
-<%= form_tag filter_index_path do %>
-  <%= text_field_tag :query, params[:query] %>
-  <%= submit_tag "search" %>
-<% end %>
 
-</div>
-<div class="container">
+<div class="container pt-5" id="villains-index">
+  <h1>All our villains</h1>
+  <div class="form-group mb-3">
+    <%= form_tag filter_index_path do %>
+      <div class="form-row">
+        <%= text_field_tag :query, params[:query] %>
+        <%= submit_tag "Search", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+
   <div class="villains-cards">
     <% @users.each do |user| %>
       <% if user.photo.attached? %>
-        <a href="#" class="villain-card" style="background-image: url(<%= cl_image_path user.photo.key, height: 300, width: 400, crop: :fill %>);">
+        <a href="/users/<%= user.id %>" class="villain-card" style="background-image: url(<%= cl_image_path user.photo.key, height: 300, width: 400, crop: :fill %>);">
+          <span><%= user.user_name %></span>
+        </a>
       <% else %>
-        <a href="#" class="villain-card" style="background-image: url('https://i.pinimg.com/originals/9f/c2/e8/9fc2e8646f9d363edb5b746bcb77ef85.png');">
+        <a href="/users/<%= user.id %>" class="villain-card" style="background-image: url('https://i.pinimg.com/originals/9f/c2/e8/9fc2e8646f9d363edb5b746bcb77ef85.png');">
+          <span><%= link_to user.user_name, user_path(user) %></span>
+        </a>
       <% end %>
-        <span><%= link_to user.user_name, user_path(user) %></span>
-      </a>
     <% end %>
   </div>
+
 </div>
