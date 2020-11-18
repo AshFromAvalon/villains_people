@@ -1,16 +1,19 @@
 .villains-cards {
   display: flex;
+  min-height: 100vh;
 }
 .villain-card {
   width: 100%;
-  height: 380px;
+  height: 480px;
   background-color: #bb4848;;
   background-position: center;
   background-size: cover;
   margin: 0 12px;
+  margin-bottom: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
+
 
   span {
     font-size: 32px;
