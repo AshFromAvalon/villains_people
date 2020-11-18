@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       patch :validate
       patch :done
       patch :pay
+      patch :cancel
     end
   end
   resources :crimes, except: :show do

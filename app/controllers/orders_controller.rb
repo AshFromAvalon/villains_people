@@ -2,6 +2,15 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(user: current_user)
+    @ongoing_orders = []
+    @archived_orders = []
+    @orders.each do |order|
+      if order.cancelled || order.paid
+        @archived_orders << order
+      else
+        @ongoing_orders << order
+      end
+    end
   end
 
   def new
@@ -13,6 +22,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     @order.crime = Crime.find(params[:crime_id])
+    @order.request_date = Date.current
     if @order.save
       flash[:alert] = 'order saved'
       redirect_to orders_path
@@ -33,7 +43,9 @@ class OrdersController < ApplicationController
       # I only select the ones for my crimes
       if order.crime.user == current_user
         # I split my orders per status defined here-over
-        if order.paid
+        if order.cancelled
+          @missions_archived << order
+        elsif order.paid
           @missions_archived << order
         elsif order.done
           @missions_topay << order
@@ -60,13 +72,22 @@ class OrdersController < ApplicationController
     set_order
     @order.paid = true
     @order.save
-    redirect_to missions_orders_path
+    redirect_to orders_path
   end
 
   # done = true PATCH order
   def done
     set_order
     @order.done = true
+    @order.done_date = Date.current
+    @order.save
+    redirect_to missions_orders_path
+  end
+
+  # cancel = true PATCH order
+  def cancel
+    set_order
+    @order.cancelled = true
     @order.save
     redirect_to missions_orders_path
   end
