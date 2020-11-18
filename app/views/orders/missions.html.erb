@@ -81,12 +81,12 @@
           <div>
             <span class="badge badge-pill badge-dark mb-3"><%= mission.crime.category %></span>
             <p class="crime-name"><strong><%= mission.crime.name %></strong></p>
+            <span class="badge badge-pill badge-success mb-3"> <%= "done (#{mission.done_date})" %></span>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
             <p class="price"><%= mission.crime.price %> <%= mission.crime.currency %></p>
             <div>
-              <p class="text-right mb-0"><%= link_to "Mark as paid", pay_order_path(mission), method: :patch, class: "mt-2 btn btn-outline-success rounded-pill text-right", data: { confirm: "Are you sure?" }%></p>
             </div>
           </div>
         </div>
@@ -97,7 +97,6 @@
   <!-- display all missions that are ARCHIVED -->
   <div class="d-flex align-items-center">
     <h3>Archives</h3>
-    <span class="badge badge-info"><%= @missions_archived.count %></span>
   </div>
   <div class="d-flex">
     <% if @missions_archived.empty? %>
@@ -108,6 +107,13 @@
           <div>
             <span class="badge badge-pill badge-dark mb-3"><%= mission.crime.category %></span>
             <p class="crime-name"><strong><%= mission.crime.name %></strong></p>
+          <div>
+            <% if mission.cancelled %>
+              <span class="badge badge-pill badge-light mb-3">cancelled</span>
+            <% else %>
+              <span class="badge badge-pill badge-success mb-3"> <%= "done (#{mission.done_date})" %></span>
+            <% end %>
+          </div>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
