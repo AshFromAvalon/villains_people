@@ -42,7 +42,7 @@
       <h6>Description</h6>
       <p><%= @user.description %></p>
       <h6>Rating</h6>
-      <% if @user.rating.nil? %>
+      <% if @review.rating.nil? %>
         <p>No rating yet</p>
       <% else %>
         <% @user.rating.floor.to_i.times do %>
@@ -54,6 +54,25 @@
       <% end %>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-9 d-flex flex-wrap">
+      <h2 class="mb-4 mt-4 col-9">Reviews</h2>
+      <% @reviews.each do |review| %>
+        <div class="card w-100 m-3" id="no-border">
+          <div class="review-card">
+            <h5 class="review-title">Review title</h5>
+            <p class="crime-name">Rating: <%= review.rating %></p>
+            <p class="review-text"><%= review.comment %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>
+
+
+
 
 

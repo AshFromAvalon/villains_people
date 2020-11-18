@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :users, only: [:index, :show]
   resources :orders, only: [:index] do
+    resources :reviews, only:[:new, :create]
     collection do
       get :missions
     end
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   resources :crimes, except: :show do
     resources :orders, only: [:new, :create]
   end
+  resources :reviews, only:[:index]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   post "filter_index", to: "users#filter_index"
 end

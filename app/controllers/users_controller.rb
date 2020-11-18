@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def show
     @user = User.find(params[:id])
+    @reviews = Review.all.select do |review|
+      review.order.user_id == params[:id].to_i
+    end
   end
 
   def index
