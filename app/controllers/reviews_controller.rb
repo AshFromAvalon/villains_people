@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.order = Order.find(params[:order_id])
+    @review.date = Date.current
     if @review.save
       flash[:alert] = 'review posted'
       redirect_to orders_path

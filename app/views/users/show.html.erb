@@ -61,7 +61,10 @@
       <% @reviews.each do |review| %>
         <div class="card w-100 m-3" id="no-border">
           <div class="review-card">
-            <h5 class="review-title"><%= review.title %></h5>
+            <div class='d-flex align-items-center justify-content-between'>
+              <h5 class="review-title"><%= review.title %></h5>
+              <p class="review-text"><%= review.post_date %></p>
+            </div>
             <p class="crime-name">Rating: <%= review.rating %></p>
             <p class="review-text"><%= review.comment %></p>
           </div>

@@ -1,9 +1,11 @@
-<h1>Reviews#new</h1>
-
-
-<%= simple_form_for [@order, @review] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :comment %>
-  <%= f.input :rating %>
-  <%= f.submit link_to 'Post review', order_reviews_path(@order) %>
-<% end %>
+<div class="container">
+  <div class="col-12 col-md-6 m-auto">
+    <h1>Review order</h1>
+    <%= simple_form_for [@order, @review] do |f| %>
+      <%= f.input :title %>
+      <%= f.input :comment %>
+      <%= f.input :rating %>
+      <%= f.submit 'Post review' %>
+    <% end %>
+  </div>
+</div>
