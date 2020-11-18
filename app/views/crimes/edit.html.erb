@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class=".text-white">Edit this crime to your portfolio</h1>
-    <%= simple_form_for @crime do |f| %>
+    <%= simple_form_for [@user, @crime] do |f| %>
     <%= f.input :name %>
     <%= f.input :category, as: :select, collection: Crime::CATEGORIES, prompt: "select one" %>
     <%= f.input :price %>

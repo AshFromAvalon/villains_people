@@ -30,7 +30,7 @@
             <%= cl_image_tag "https://res.cloudinary.com/dydj5k25d/image/upload/v1605627577/Profile_avatar_placeholder_large_znjuuz.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "✚ Add crime", new_crime_path, class: "dropdown-item" %>
+            <%= link_to "✚ Add crime", new_user_crime_path(current_user), class: "dropdown-item" %>
             <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>

@@ -16,8 +16,9 @@
   <div class="row">
     <div class="col-9 d-flex flex-wrap">
       <h2 class="mb-4 col-9">Crimes proposed</h2>
-      <h2 class="col-3"><%= link_to 'New crime', new_crime_path(@user), class:'btn btn-primary rounded-pill d-inline-block ml-auto' %></h2>
-
+      <% if @user == current_user %>
+        <h2 class="col-3"><%= link_to 'New crime', new_user_crime_path(@user), class:'btn btn-primary rounded-pill d-inline-block ml-auto' %></h2>
+      <% end %>
       <% @user.crimes.each do |crime| %>
         <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
           <div>
@@ -28,7 +29,7 @@
             <h6 class="price-tag"><strong>Price</strong></h6>
             <p class="price"><%= crime.price %> <%= crime.currency %></p>
             <div>
-              <p class="text-right mb-0"><%= link_to "Order", new_crime_order_path(crime), class:'mt-2 btn btn-outline-primary rounded-pill text-right' %></p>
+              <p class="text-right mb-0"><%= link_to "Order", new_user_crime_order_path(@user, crime), class:'mt-2 btn btn-outline-primary rounded-pill text-right' %></p>
             </div>
           </div>
         </div>

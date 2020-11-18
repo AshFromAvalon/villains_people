@@ -1,17 +1,19 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:validate, :pay, :done]
 
   def index
     @orders = Order.where(user: current_user)
   end
 
   def new
-    @order = Order.new
+    @order = current_user.orders.new
+    @user = User.find(params[:user_id])
     @crime = Crime.find(params[:crime_id])
+    authorize @order
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.user = current_user
+    @order = current_user.orders.new(order_params)
     @order.crime = Crime.find(params[:crime_id])
     if @order.save
       flash[:alert] = 'order saved'
@@ -19,6 +21,7 @@ class OrdersController < ApplicationController
     else
       render :new
     end
+    authorize @order
   end
 
   # missions display all the orders for which I have to make a crime
@@ -45,6 +48,7 @@ class OrdersController < ApplicationController
         end
       end
     end
+    authorize Order.all
   end
 
   # validated = true PATCH order
@@ -53,6 +57,7 @@ class OrdersController < ApplicationController
     @order.validated = true
     @order.save
     redirect_to missions_orders_path
+    authorize @order
   end
 
   # paid = true PATCH order
@@ -61,6 +66,7 @@ class OrdersController < ApplicationController
     @order.paid = true
     @order.save
     redirect_to missions_orders_path
+    authorize @order
   end
 
   # done = true PATCH order
@@ -69,6 +75,7 @@ class OrdersController < ApplicationController
     @order.done = true
     @order.save
     redirect_to missions_orders_path
+    authorize @order
   end
 
   # private methods
@@ -79,6 +86,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:description)
+    params.require(:order).permit(:description, :user_id, :crime_id)
   end
 end

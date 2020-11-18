@@ -24,8 +24,10 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+#Policy management
+gem 'pundit'
 
-#User management
+#User account management
 gem 'devise'
 
 #to store user images

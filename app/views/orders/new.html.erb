@@ -1,6 +1,6 @@
 <div class="container">
   <h1>New order</h1>
-    <%= simple_form_for [@crime, @order] do |f| %>
+    <%= simple_form_for [@user, @crime, @order] do |f| %>
     <%= f.input :description %>
     <%= f.submit %>
   <% end %>

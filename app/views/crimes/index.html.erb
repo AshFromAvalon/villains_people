@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-between align-items-center">
   <h1>List of all availabel crimes</h1>
-  <%= link_to "Add crime", new_crime_path %>
+  <%= link_to "Add crime", new_user_crime_path(@user) %>
   </div>
   <ul class="list-group">
   <% @crimes.each do |crime| %>
@@ -13,8 +13,8 @@
         <span class="badge badge-primary badge-pill"><%= crime.price %> <%= crime.currency %></span>
       </div>
     </li>
-    <%= link_to 'Edit', edit_crime_path(crime), class: 'btn btn-outline-primary' %>
-    <%= link_to 'Delete', crime_path(crime), method: :delete, data: {confirm: 'You are about to delete permamently this crime. Are you sure ?'}, class: 'btn btn-outline-danger' %>
+    <%= link_to 'Edit', edit_user_crime_path(@user, crime), class: 'btn btn-outline-primary' %>
+    <%= link_to 'Delete', user_crime_path(@user, crime), method: :delete, data: {confirm: 'You are about to delete permamently this crime. Are you sure ?'}, class: 'btn btn-outline-danger' %>
   <% end %>
   </ul>
 </div>
