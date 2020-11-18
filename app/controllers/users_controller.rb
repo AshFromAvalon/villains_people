@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     if params[:query]
-      @users =  User.includes(:crimes).where('crimes.category' => params[:query])
+      @users = User.includes(:crimes).where('crimes.category' => params[:query])
     else
       @users =  User.includes(:crimes).where.not('crimes.id' => nil)
     end
@@ -17,6 +17,8 @@ class UsersController < ApplicationController
   private
 
   def filter_index
-    redirect_to action: "index", query: params[:query]
+    #isolate params that are in our crimes list
+    selected_crimes = params.keys.select { |crime| Crime::CATEGORIES.include?(crime) }
+    redirect_to action: "index", query: selected_crimes
   end
 end

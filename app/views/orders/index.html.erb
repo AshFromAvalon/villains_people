@@ -1,22 +1,30 @@
-<div class="container">
-  <div class="d-flex justify-content-between align-items-center">
-  <h1>My ongoing orders</h1>
+<div class="banner banner-mini">
+  <div class="container">
+    <h1>My ongoing orders</h1>
   </div>
-  <ul class="list-group">
+</div>
+
+<div class="container">
+<div class="d-flex flex-wrap">
   <% @orders.each do |order| %>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      <div>
-        <h4><%= order.crime.name %></h4>
+    <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+        <div>
+          <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
+          <p class="crime-name mb-1"><strong><%= order.crime.name %></strong></p>
+          <p class="text-secondary">Ordered by <%= order.crime.user.user_name %></p>
+        </div>
+        <div>
+          <h6 class="price-tag"><strong>Price</strong></h6>
+          <p class="price"><%= order.crime.price %> <%= order.crime.currency %></p>
+          <div>
+            <span class="badge badge-primary badge-pill"><%= order.validated %></span>
+            <span class="badge badge-primary badge-pill"><%= order.done %></span>
+            <span class="badge badge-primary badge-pill"><%= order.paid %></span>
+          </div>
+        </div>
       </div>
-      <div>
-        <span class="badge badge-primary badge-pill">by <%= order.crime.user.user_name %></span>
-        <span class="badge badge-primary badge-pill"><%= order.crime.category %></span>
-        <span class="badge badge-primary badge-pill"><%= order.crime.price %> <%= order.crime.currency %></span>
-        <span class="badge badge-primary badge-pill"><%= order.validated %></span>
-        <span class="badge badge-primary badge-pill"><%= order.done %></span>
-        <span class="badge badge-primary badge-pill"><%= order.paid %></span>
-      </div>
-    </li>
   <% end %>
-  </ul>
+</div>
+
+
 </div>
