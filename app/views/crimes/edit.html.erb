@@ -1,7 +1,5 @@
 <div class="container">
-  <div class="col-12 col-md-6 m-auto">
-  <h1>Add a new crime</h1>
-  <h3>to your portfolio</h3>
+  <h1 class=".text-white">Edit this crime to your portfolio</h1>
     <%= simple_form_for @crime do |f| %>
     <%= f.input :name %>
     <%= f.input :category, as: :select, collection: Crime::CATEGORIES, prompt: "select one" %>
@@ -9,5 +7,4 @@
     <%= f.input :currency %>
     <%= f.submit %>
   <% end %>
-  </div>
 </div>

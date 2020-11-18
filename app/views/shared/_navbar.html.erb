@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+    <%= cl_image_tag "https://res.cloudinary.com/dydj5k25d/image/upload/v1605628521/logo-red_qp53xp.png" %>
+  <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -14,11 +14,21 @@
         <li class="nav-item active">
           <%= link_to "Find a villain", users_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "My ordered crimes", orders_path, class: "nav-link" %>
+        <li class="nav-item d-flex flex-row align-items-center ">
+            <%= link_to "My orders", orders_path, class: "nav-link" %>
+            <span class="badge badge-pill badge-success" ><%= current_user.orders.count %></span>
+        </li>
+        <li class="nav-item d-flex flex-row align-items-center ">
+            <%= link_to "My crimes", missions_orders_path, class: "nav-link" %>
+            <span class="badge badge-pill badge-danger" ></span>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://i.pinimg.com/originals/fb/84/a5/fb84a58de04a8755552e142582eb7189.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <!-- Display the current user photo if it has one -->
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= cl_image_tag "https://res.cloudinary.com/dydj5k25d/image/upload/v1605627577/Profile_avatar_placeholder_large_znjuuz.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "✚ Add crime", new_crime_path, class: "dropdown-item" %>
             <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
