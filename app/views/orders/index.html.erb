@@ -51,14 +51,12 @@
             <h6 class="price-tag"><strong>Price</strong></h6>
             <p class="price"><%= order.crime.price %> <%= order.crime.currency %></p>
             <% if order.done %>
-              <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-            <% else %>
-              <span class="badge badge-dark badge-pill">cancelled</span>
-            <% end %>
-            <% if order.done %>
               <div class='d-flex align-items-center justify-content-between'>
+                <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
                 <%= link_to "Review", new_order_review_path(order), class: "mt-2 btn btn-outline-primary rounded-pill text-right" %>
               </div>
+            <% else %>
+              <span class="badge badge-dark badge-pill">cancelled</span>
             <% end %>
           </div>
         </div>
