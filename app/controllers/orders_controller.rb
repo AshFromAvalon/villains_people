@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
     set_order
     @order.cancelled = true
     @order.save
-    redirect_to missions_orders_path
+    redirect_to orders_path
   end
 
   # private methods
