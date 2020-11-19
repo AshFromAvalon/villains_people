@@ -1,6 +1,6 @@
-<div class="banner banner-show" style="<% if @user.photo.attached? %>
+<div class="banner banner-show" style="<% if @user.cover_pic.attached? %>
                                               background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
-                                              url('<%= cl_image_path @user.photo.key, height: 1080, width: 1920, crop: :fill %>')
+                                              url('<%= cl_image_path @user.cover_pic.key, height: 1080, width: 1920, crop: :fill %>')
                                        <% else %>
                                               background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)),
                                               url('https://static1.cbrimages.com/wordpress/wp-content/uploads/2019/11/Meanest-Supervillains-Of-All-Time.jpg')
