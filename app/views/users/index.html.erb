@@ -27,7 +27,7 @@
         </a>
       <% else %>
         <a href="/users/<%= user.id %>" class="villain-card" style="background-image: url('https://i.pinimg.com/originals/9f/c2/e8/9fc2e8646f9d363edb5b746bcb77ef85.png');">
-          <span><%= link_to user.user_name, user_path(user) %></span>
+          <span><%= user.user_name %></span>
         </a>
       <% end %>
     <% end %>
