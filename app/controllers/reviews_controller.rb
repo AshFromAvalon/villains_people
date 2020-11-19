@@ -1,14 +1,5 @@
 class ReviewsController < ApplicationController
 
-  def index
-    @reviews = Review.all
-  end
-
-  def new
-    @review = Review.new
-    @order = Order.find(params[:order_id])
-  end
-
   def create
     @review = Review.new(review_params)
     @review.order = Order.find(params[:order_id])
