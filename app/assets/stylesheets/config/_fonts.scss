@@ -16,3 +16,8 @@ $logo-font: "Goldman", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+@font-face {
+  font-family: "OverdoseSunrise";
+  src: font-url('OverdoseSunrise.ttf') format('truetype');
+}
+$my-font: "OverdoseSunrise";
