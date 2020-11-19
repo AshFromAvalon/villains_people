@@ -22,7 +22,6 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     @order.crime = Crime.find(params[:crime_id])
-    @order.request_date = Date.current
     if @order.save
       flash[:alert] = 'order saved'
       redirect_to orders_path
@@ -89,7 +88,7 @@ class OrdersController < ApplicationController
     set_order
     @order.cancelled = true
     @order.save
-    redirect_to missions_orders_path
+    redirect_to orders_path
   end
 
   # private methods
