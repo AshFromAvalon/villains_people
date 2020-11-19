@@ -11,7 +11,7 @@
   <!-- display all missions that are AWAITING APPROVAL -->
   <div class="d-flex align-items-center">
     <h3>Mission requests</h3>
-    <span class="badge badge-info"><%= @missions_tovalidate.count %></span>
+    <span class="badge badge-info ml-3 mb-4"><%= @missions_tovalidate.count %></span>
   </div>
     <div class="d-flex">
     <% if @missions_tovalidate.empty? %>
@@ -64,7 +64,7 @@
   <!-- display all missions that are TO DO -->
   <div class="d-flex align-items-center">
     <h3>To do</h3>
-    <span class="badge badge-info"><%= @missions_tofinish.count %></span>
+    <span class="badge badge-info ml-3 mb-4"><%= @missions_tofinish.count %></span>
   </div>
   <ul class="list-group">
     <div class="d-flex">
@@ -118,7 +118,7 @@
   <!-- display all missions that are TO PAY -->
   <div class="d-flex align-items-center">
     <h3>Crimes awaiting payment</h3>
-    <span class="badge badge-info"><%= @missions_topay.count %></span>
+    <span class="badge badge-info ml-3 mb-4"><%= @missions_topay.count %></span>
   </div>
   <div class="d-flex">
     <% if @missions_topay.empty? %>
