@@ -22,6 +22,7 @@
           <div>
             <span class="badge badge-pill badge-dark mb-3"><%= mission_tovalidate.crime.category %></span>
             <p class="crime-name"><strong><%= mission_tovalidate.crime.name %></strong></p>
+            <div class="text-primary text-truncate w-100"><%= mission_tovalidate.description %></div>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
@@ -75,6 +76,7 @@
             <div>
               <span class="badge badge-pill badge-dark mb-3"><%= mission_tofinish.crime.category %></span>
               <p class="crime-name"><strong><%= mission_tofinish.crime.name %></strong></p>
+              <div class="text-primary text-truncate w-100"><%= mission_tofinish.description %></div>
             </div>
             <div>
               <h6 class="price-tag"><strong>Price</strong></h6>
@@ -127,6 +129,7 @@
           <div>
             <span class="badge badge-pill badge-dark mb-3"><%= mission_topay.crime.category %></span>
             <p class="crime-name"><strong><%= mission_topay.crime.name %></strong></p>
+            <div class="text-primary text-truncate w-100"><%= mission_topay.description %></div>
             <span class="badge badge-pill badge-success mb-3"> <%= "done (#{mission_topay.done_date})" %></span>
           </div>
           <div>
@@ -179,6 +182,7 @@
           <div>
             <span class="badge badge-pill badge-dark mb-3"><%= mission_archived.crime.category %></span>
             <p class="crime-name"><strong><%= mission_archived.crime.name %></strong></p>
+            <div class="text-primary text-truncate w-100"><%= mission_archived.description %></div>
           <div>
             <% if mission_archived.cancelled %>
               <span class="badge badge-pill badge-light mb-3">cancelled</span>
