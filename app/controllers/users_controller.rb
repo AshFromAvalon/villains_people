@@ -10,8 +10,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    if params[:query]
-      @users = User.includes(:crimes).where('crimes.category' => params[:query])
+     if params[:category] && params[:category].keys.any?
+      @users = User.includes(:crimes).where(crimes: { category: params[:category].keys })
     else
       @users =  User.includes(:crimes).where.not('crimes.id' => nil)
     end
