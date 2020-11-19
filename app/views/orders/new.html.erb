@@ -1,9 +1,16 @@
 <div class="container">
   <div class="col-12 col-md-6 m-auto">
     <h1>New order</h1>
+    <div>
+      <br>
+      <h1><%= @crime.name %></h1>
+      <span class="badge badge-pill badge-dark mb-3"><%= @crime.category %></span class="badge badge-pill badge-dark mb-3">
+      <h6 class="text-primary"><strong>Price</strong></h6>
+      <p class="text-secondary"><%= @crime.price %> <%= @crime.currency %></p>
+    </div>
       <%= simple_form_for [@crime, @order] do |f| %>
-      <%= f.input :description %>
-      <%= f.submit %>
+      <%= f.input :description, placeholder: "Give villain instructions for the crime to perform. Your identity will remain unkown to the villain..." %>
+      <%= f.submit 'Order crime', class:'mt-2 btn btn-outline-primary rounded-pill text-right' %>
     <% end %>
   </div>
 </div>
