@@ -10,7 +10,8 @@ class ReviewsController < ApplicationController
       @review.order.save
       redirect_to orders_path
     else
-      render :new
+      flash[:alert] = 'please leave a review before paying'
+      redirect_to orders_path
     end
   end
 

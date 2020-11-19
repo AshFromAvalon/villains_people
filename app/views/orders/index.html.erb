@@ -40,7 +40,7 @@
         <!-- Modal Begins -->
         <div class="modal fade" id="pay-<%= order.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <div class="modal-content crime-card">
+            <div class="modal-content crime-modal">
               <div class="modal-header">
                 <h5 class="modal-title crime-name" id="exampleModalLabel"><%= order.crime.name %></h5>
                 <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
@@ -78,7 +78,7 @@
     <h3>Archived orders</h3>
   <div class="d-flex flex-wrap">
     <% @archived_orders.each do |order| %>
-      <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+      <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between" type="button" data-toggle="modal" data-target="#finished-<%= order.id %>">
           <div>
             <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
             <p class="crime-name mb-1"><strong><%= order.crime.name %></strong></p>
@@ -101,6 +101,25 @@
             <% end %>
           </div>
         </div>
+        <!-- Modal Begins -->
+        <div class="modal fade" id="finished-<%= order.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content crime-modal">
+              <div class="modal-header">
+                <h5 class="modal-title crime-name" id="exampleModalLabel"><%= order.crime.name %></h5>
+                <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
+                  <div class="text-primary text-wrap text-break w-100"><%= order.description %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal Ends -->
     <% end %>
   </div>
 </div>
