@@ -15,6 +15,8 @@ class ReviewsController < ApplicationController
     @review.post_date = Date.current
     if @review.save
       flash[:alert] = 'review posted'
+      @review.order.paid = true
+      @review.order.save
       redirect_to orders_path
     else
       render :new
