@@ -3,7 +3,8 @@
     display: none;
   }
   input[type="checkbox"]:checked + label {
-    color: blue;
+    color: #282828;
+    background-color: grey;
   }
   input[type="checkbox"] + label {
     border: 1px solid grey;
