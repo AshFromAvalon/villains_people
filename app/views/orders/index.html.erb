@@ -90,12 +90,11 @@
             <% if order.done && order.review == nil%>
               <div class='d-flex align-items-center justify-content-between'>
                 <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-                <%= link_to "Review", new_order_review_path(order), class: "mt-2 btn btn-primary rounded-pill text-right" %>
               </div>
             <% elsif order.done && order.review != nil %>
               <div class='d-flex align-items-center justify-content-between'>
                 <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-                <span class="badge badge-light badge-pill">Reviewd</span>
+                <span class="badge badge-light badge-pill">Paid & Reviewed</span>
               </div>
             <% else %>
               <span class="badge badge-dark badge-pill">cancelled</span>
