@@ -11,11 +11,18 @@ class UsersController < ApplicationController
   end
 
   def index
-     if params[:category] && params[:category].keys.any?
+    if params[:category] && params[:category].keys.any?
       @users = User.includes(:crimes).where(crimes: { category: params[:category].keys })
     else
       @users =  User.includes(:crimes).where.not('crimes.id' => nil)
     end
+    @markers = @users.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+      }
+    end
   end
 
 end
+
