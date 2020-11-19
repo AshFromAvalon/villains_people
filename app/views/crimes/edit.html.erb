@@ -1,10 +1,14 @@
-<div class="container">
-  <h1 class=".text-white">Edit this crime to your portfolio</h1>
-    <%= simple_form_for @crime do |f| %>
-    <%= f.input :name %>
-    <%= f.input :category, as: :select, collection: Crime::CATEGORIES, prompt: "select one" %>
-    <%= f.input :price %>
-    <%= f.input :currency %>
-    <%= f.submit %>
-  <% end %>
+<div class="form">
+  <div class="container">
+    <div class="col-md-6">
+      <h1 class=".text-white">Edit this crime to your portfolio</h1>
+        <%= simple_form_for @crime do |f| %>
+        <%= f.input :name %>
+        <%= f.input :category, as: :select, collection: Crime::CATEGORIES, prompt: "select one" %>
+        <%= f.input :price %>
+        <%= f.input :currency %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
 </div>
