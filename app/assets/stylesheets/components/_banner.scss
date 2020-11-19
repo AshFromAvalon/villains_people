@@ -4,14 +4,18 @@
   background-size: cover;
   background-position: center;
   h1 {
+    text-align: center;
     font-weight: 900;
-    font-size: 120px;
-    font-family: 'Work Sans';
-    font-weight: 900;
+    font-size: 170px;
+    font-family: 'OverdoseSunrise';
     text-transform: uppercase;
     letter-spacing: .6rem;
     padding-top: 20vh;
     padding-bottom: 3rem;
+    opacity: 0.95;
+  }
+  p {
+    text-align: center;
   }
 }
 
