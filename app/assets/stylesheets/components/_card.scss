@@ -36,7 +36,7 @@
   padding: 16px;
   background-color: #202020d0;
   border-radius: 8px;
-  border: 1px solid #6A5A39 ;
+  border: 1px solid #6A5A39;
   min-height: 250px;
   .crime-name {
     font-size: 16px;
@@ -55,3 +55,21 @@
     font-size: 14px;
   }
 }
+
+#no-border {
+  border: none;
+}
+
+.review-card {
+  padding: 20px;
+  background-color: #222222;
+  border-bottom: #6A5A39;
+  .review-title {
+    font-size: 16px;
+    color: #d3b16e;
+  }
+  .review-text {
+    font-weight: 100;
+  }
+}
+

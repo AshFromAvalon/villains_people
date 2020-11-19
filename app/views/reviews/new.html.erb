@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="col-12 col-md-6 m-auto">
+    <h1>Review order</h1>
+    <%= simple_form_for [@order, @review] do |f| %>
+      <%= f.input :title %>
+      <%= f.input :comment %>
+      <%= f.collection_radio_buttons :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']],
+        :first,
+        :last,
+        :item_wrapper_class => 'ratings collection_radio_buttons' %>
+        <br>
+      <%= f.submit 'Post review' %>
+    <% end %>
+  </div>
+</div>
