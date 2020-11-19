@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :crimes
   has_many :orders
+  has_many :reviews, through: :orders
   has_one_attached :profile_pic
   has_one_attached :cover_pic
   validates :user_name, presence: true, uniqueness: true

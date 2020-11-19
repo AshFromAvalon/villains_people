@@ -20,7 +20,9 @@
             <% if order.done %>
               <div class='d-flex align-items-center justify-content-between'>
                 <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-                <%= link_to "pay", pay_order_path(order), method: :patch, class: "mt-2 btn btn-outline-success rounded-pill text-right", data: { confirm: "Are you sure?" }%>
+                <button type="button" class="mt-2 btn btn-outline-success rounded-pill text-right" data-toggle="modal" data-target="#pay-<%= order.id %>">
+                  Pay villain
+                </button>
               </div>
             <% elsif order.validated %>
               <div class='d-flex align-items-center justify-content-between'>
@@ -35,13 +37,48 @@
             <% end %>
           </div>
         </div>
+        <!-- Modal Begins -->
+        <div class="modal fade" id="pay-<%= order.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content crime-modal">
+              <div class="modal-header">
+                <h5 class="modal-title crime-name" id="exampleModalLabel"><%= order.crime.name %></h5>
+                <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
+                  <div class="text-primary text-wrap text-break w-100"><%= order.description %></div>
+                </div>
+                <br>
+                <h3>Review order</h3>
+                <%= simple_form_for [order, @review] do |f| %>
+                  <%= f.input :title %>
+                  <%= f.input :comment %>
+                  <%= f.collection_radio_buttons :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']],
+                    :first,
+                    :last,
+                    :item_wrapper_class => 'ratings collection_radio_buttons' %>
+                    <br>
+                  <div>
+                    <h6 class="price-tag"><strong>Price</strong></h6>
+                    <p class="price"><%= order.crime.price %> <%= order.crime.currency %></p>
+                  </div>
+                  <%= f.submit 'Confirm Payment', class: "mt-2 btn btn-outline-success rounded-pill text-right" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal Ends -->
     <% end %>
   </div>
 
     <h3>Archived orders</h3>
   <div class="d-flex flex-wrap">
     <% @archived_orders.each do |order| %>
-      <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+      <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between" type="button" data-toggle="modal" data-target="#finished-<%= order.id %>">
           <div>
             <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
             <p class="crime-name mb-1"><strong><%= order.crime.name %></strong></p>
@@ -53,18 +90,36 @@
             <% if order.done && order.review == nil%>
               <div class='d-flex align-items-center justify-content-between'>
                 <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-                <%= link_to "Review", new_order_review_path(order), class: "mt-2 btn btn-primary rounded-pill text-right" %>
               </div>
             <% elsif order.done && order.review != nil %>
               <div class='d-flex align-items-center justify-content-between'>
                 <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-                <span class="badge badge-light badge-pill">Reviewd</span>
+                <span class="badge badge-light badge-pill">Paid & Reviewed</span>
               </div>
             <% else %>
               <span class="badge badge-dark badge-pill">cancelled</span>
             <% end %>
           </div>
         </div>
+        <!-- Modal Begins -->
+        <div class="modal fade" id="finished-<%= order.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content crime-modal">
+              <div class="modal-header">
+                <h5 class="modal-title crime-name" id="exampleModalLabel"><%= order.crime.name %></h5>
+                <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
+                  <div class="text-primary text-wrap text-break w-100"><%= order.description %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal Ends -->
     <% end %>
   </div>
 </div>

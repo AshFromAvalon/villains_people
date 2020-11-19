@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(user: current_user)
+    @review = Review.new
     @ongoing_orders = []
     @archived_orders = []
     @orders.each do |order|

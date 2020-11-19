@@ -19,9 +19,15 @@ class UsersController < ApplicationController
     @markers = @users.geocoded.map do |user|
       {
         lat: user.latitude,
-        lng: user.longitude
+        lng: user.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { user: user })
       }
     end
+    @reviews = Review.all.select do |review|
+      review.order.user_id == params[:id].to_i
+    end
+    @ratings = @reviews.map { |review| review.rating }
+    @average_rating = @ratings.sum.fdiv(@ratings.size)
   end
 
 end
