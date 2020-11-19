@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @reviews = Review.all.select do |review|
       review.order.user_id == params[:id].to_i
     end
-    @ratings = Review.all.map { |review| review.rating }
+    @ratings = @reviews.map { |review| review.rating }
     @average_rating = @ratings.sum.fdiv(@ratings.size)
   end
 

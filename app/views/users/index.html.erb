@@ -21,7 +21,7 @@
     </div>
   <div class="villains-cards d-flex flex-wrap mt-4">
     <% @users.each do |user| %>
-      <% if user.photo.attached? %>
+      <% if user.cover_pic.attached? %>
         <a href="/users/<%= user.id %>" class="villain-card" style="background-image: url(<%= cl_image_path user.photo.key, height: 300, width: 400, crop: :fill %>);">
           <span><%= user.user_name %></span>
         </a>
