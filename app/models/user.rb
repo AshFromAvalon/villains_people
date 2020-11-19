@@ -9,4 +9,7 @@ class User < ApplicationRecord
   has_one_attached :profile_pic
   has_one_attached :cover_pic
   validates :user_name, presence: true, uniqueness: true
+
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end

@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+#GeoCoding
+gem 'geocoder'
+
 #User management
 gem 'devise'
 
