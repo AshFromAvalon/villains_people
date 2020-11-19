@@ -1,1 +1,13 @@
-<h2><%= user.user_name %></h2>
+<div class="mapboxgl-popup">
+  <div class="mapboxgl-popup-content d-flex justify-content-between">
+    <% if current_user.profile_pic.attached? %>
+      <%= cl_image_tag current_user.profile_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <% else %>
+      <%= cl_image_tag "https://res.cloudinary.com/dydj5k25d/image/upload/v1605627577/Profile_avatar_placeholder_large_znjuuz.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <% end %>
+    <div class="popup_name ml-3">
+      <%= user.alias %>
+    </div>
+  </div>
+</div>
+
