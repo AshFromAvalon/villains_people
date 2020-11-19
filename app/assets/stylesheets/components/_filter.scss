@@ -1,0 +1,13 @@
+.filter_search {
+  input[type="checkbox"] {
+    display: none;
+  }
+  input[type="checkbox"]:checked + label {
+    color: #282828;
+    background-color: grey;
+  }
+  input[type="checkbox"] + label {
+    border: 1px solid grey;
+    padding: 10px;
+  }
+}

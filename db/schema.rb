@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_11_19_115008) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "request_date"
     t.date "done_date"
-    t.boolean "cancelled"
+    t.boolean "cancelled", default: false
     t.index ["crime_id"], name: "index_orders_on_crime_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
