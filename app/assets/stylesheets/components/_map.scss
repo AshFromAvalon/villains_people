@@ -1,0 +1,16 @@
+.mapboxgl-popup {
+  max-width: 500px !important;
+  max-height: 500px !important;
+}
+
+.mapboxgl-popup-content {
+  max-width: 500px !important;
+  max-height: 500px !important;
+  background: #282828 !important;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.popup_name {
+  color: #282828;
+}
