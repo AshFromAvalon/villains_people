@@ -11,10 +11,11 @@
   <h1 class="text-center text-uppercase mt-4 mb-5">All our villains</h1>
     <!-- Checkboxes -->
     <div class="filters text-center text-secondary">
-      <%= form_tag filter_index_path do %>
-        <% Crime::CATEGORIES.each do |crime| %>
-          <%= check_box_tag crime, crime %>
-          <%= h crime %>
+      <%= form_tag users_path, method: :get, class: "filter_search" do %>
+        <% Crime::CATEGORIES.each do |category| %>
+          <%= check_box_tag "category[#{category}]", category, params[:category]&.include?(category) %>
+          <%#= check_box_tag "category[]", category, params[:category]&.include?(category) %>
+          <%= label_tag "category[#{category}]", category %>
         <% end %>
         <%= submit_tag "Apply filters", class: 'btn btn-primary' %>
       <% end %>
