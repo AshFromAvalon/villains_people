@@ -17,9 +17,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def filter_index
-    #isolate params that are in our crimes list
-    selected_crimes = params.keys.select { |crime| Crime::CATEGORIES.include?(crime) }
-    redirect_to action: "index", query: selected_crimes
-  end
 end
