@@ -1,6 +1,6 @@
 <div class="banner banner-mini">
   <div class="container">
-    <h1>My crimes</h1>
+    <h1>My Missions</h1>
   </div>
 </div>
 
@@ -10,27 +10,50 @@
 
   <!-- display all missions that are AWAITING APPROVAL -->
   <div class="d-flex align-items-center">
-    <h3>Crimes requests</h3>
+    <h3>Mission requests</h3>
     <span class="badge badge-info"><%= @missions_tovalidate.count %></span>
   </div>
     <div class="d-flex">
     <% if @missions_tovalidate.empty? %>
       <p>No crimes to validate</p>
     <% else %>
-      <% @missions_tovalidate.each do |mission| %>
-        <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+      <% @missions_tovalidate.each do |mission_tovalidate| %>
+        <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between" type="button" data-toggle="modal" data-target="#tovalidate-<%= mission_tovalidate.id %>">
           <div>
-            <span class="badge badge-pill badge-dark mb-3"><%= mission.crime.category %></span>
-            <p class="crime-name"><strong><%= mission.crime.name %></strong></p>
+            <span class="badge badge-pill badge-dark mb-3"><%= mission_tovalidate.crime.category %></span>
+            <p class="crime-name"><strong><%= mission_tovalidate.crime.name %></strong></p>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
-            <p class="price"><%= mission.crime.price %> <%= mission.crime.currency %></p>
-            <div>
-              <p class="text-right mb-0"><%= link_to "Accept crime", validate_order_path(mission), method: :patch, class:'mt-2 btn btn-outline-primary rounded-pill text-right' %></p>
+            <p class="price"><%= mission_tovalidate.crime.price %> <%= mission_tovalidate.crime.currency %></p>
+          </div>
+        </div>
+        <!-- Modal Begins -->
+        <div class="modal fade" id="tovalidate-<%= mission_tovalidate.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content crime-card">
+              <div class="modal-header">
+                <h5 class="modal-title crime-name" id="exampleModalLabel"><%= mission_tovalidate.crime.name %></h5>
+                <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <span class="badge badge-pill badge-dark mb-3"><%= mission_tovalidate.crime.category %></span>
+                  <div class="text-primary text-wrap text-break w-100"><%= mission_tovalidate.description %></div>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="price-tag"><strong>Price</strong></h6>
+                  <p class="price"><%= mission_tovalidate.crime.price %> <%= mission_tovalidate.crime.currency %></p>
+                </div>
+                <p class="text-right mb-0"><%= link_to "Accept crime", validate_order_path(mission_tovalidate), method: :patch, class:'mt-2 btn btn-outline-primary rounded-pill text-right' %></p>
+              </div>
             </div>
           </div>
         </div>
+        <!-- Modal Ends -->
       <% end %>
     <% end %>
     </div>
@@ -47,20 +70,46 @@
       <% if @missions_tofinish.empty? %>
         <p>No crimes to finish</p>
       <% else %>
-        <% @missions_tofinish.each do |mission| %>
-          <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+        <% @missions_tofinish.each do |mission_tofinish| %>
+          <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between" type="button" data-toggle="modal" data-target="#tofinish-<%= mission_tofinish.id %>">
             <div>
-              <span class="badge badge-pill badge-dark mb-3"><%= mission.crime.category %></span>
-              <p class="crime-name"><strong><%= mission.crime.name %></strong></p>
+              <span class="badge badge-pill badge-dark mb-3"><%= mission_tofinish.crime.category %></span>
+              <p class="crime-name"><strong><%= mission_tofinish.crime.name %></strong></p>
             </div>
             <div>
               <h6 class="price-tag"><strong>Price</strong></h6>
-              <p class="price"><%= mission.crime.price %> <%= mission.crime.currency %></p>
+              <p class="price"><%= mission_tofinish.crime.price %> <%= mission_tofinish.crime.currency %></p>
               <div>
-                <p class="text-right mb-0"><%= link_to "Mark as done", done_order_path(mission), method: :patch, class:'mt-2 btn btn-outline-warning rounded-pill text-right', data: { confirm: "Are you sure?" }%></p>
+                <p class="text-right mb-0"><%= link_to "Mark as done", done_order_path(mission_tofinish), method: :patch, class:'mt-2 btn btn-outline-warning rounded-pill text-right', data: { confirm: "Are you sure?" }%></p>
               </div>
             </div>
           </div>
+          <!-- Modal Begins -->
+          <div class="modal fade" id="tofinish-<%= mission_tofinish.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content crime-card">
+                <div class="modal-header">
+                  <h5 class="modal-title crime-name" id="exampleModalLabel"><%= mission_tofinish.crime.name %></h5>
+                  <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div>
+                    <span class="badge badge-pill badge-dark mb-3"><%= mission_tofinish.crime.category %></span>
+                    <div class="text-primary text-wrap text-break w-100"><%= mission_tofinish.description %></div>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="price-tag"><strong>Price</strong></h6>
+                    <p class="price"><%= mission_tofinish.crime.price %> <%= mission_tofinish.crime.currency %></p>
+                  </div>
+                  <p class="text-right mb-0"><%= link_to "Mark as done", done_order_path(mission_tofinish), method: :patch, class:'mt-2 btn btn-outline-warning rounded-pill text-right', data: { confirm: "Are you sure?" }%></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Ends -->
         <% end %>
       <% end %>
     </div>
@@ -76,20 +125,46 @@
     <% if @missions_topay.empty? %>
       <p>No crimes awaiting payment</p>
     <% else %>
-      <% @missions_topay.each do |mission| %>
-        <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+      <% @missions_topay.each do |mission_topay| %>
+        <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between" type="button" data-toggle="modal" data-target="#topay-<%= mission_topay.id %>">
           <div>
-            <span class="badge badge-pill badge-dark mb-3"><%= mission.crime.category %></span>
-            <p class="crime-name"><strong><%= mission.crime.name %></strong></p>
-            <span class="badge badge-pill badge-success mb-3"> <%= "done (#{mission.done_date})" %></span>
+            <span class="badge badge-pill badge-dark mb-3"><%= mission_topay.crime.category %></span>
+            <p class="crime-name"><strong><%= mission_topay.crime.name %></strong></p>
+            <span class="badge badge-pill badge-success mb-3"> <%= "done (#{mission_topay.done_date})" %></span>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
-            <p class="price"><%= mission.crime.price %> <%= mission.crime.currency %></p>
+            <p class="price"><%= mission_topay.crime.price %> <%= mission_topay.crime.currency %></p>
             <div>
             </div>
           </div>
         </div>
+          <!-- Modal Begins -->
+          <div class="modal fade" id="topay-<%= mission_topay.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content crime-card">
+                <div class="modal-header">
+                  <h5 class="modal-title crime-name" id="exampleModalLabel"><%= mission_topay.crime.name %></h5>
+                  <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div>
+                    <span class="badge badge-pill badge-dark mb-3"><%= mission_topay.crime.category %></span>
+                    <div class="text-primary text-wrap text-break w-100"><%= mission_topay.description %></div>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="price-tag"><strong>Price</strong></h6>
+                    <p class="price"><%= mission_topay.crime.price %> <%= mission_topay.crime.currency %></p>
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Ends -->
       <% end %>
     <% end %>
   </div>
@@ -102,24 +177,50 @@
     <% if @missions_archived.empty? %>
       <p>No crimes in Archives</p>
     <% else %>
-      <% @missions_archived.each do |mission| %>
-        <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+      <% @missions_archived.each do |mission_archived| %>
+        <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between" type="button" data-toggle="modal" data-target="#archive-<%= mission_archived %>">
           <div>
-            <span class="badge badge-pill badge-dark mb-3"><%= mission.crime.category %></span>
-            <p class="crime-name"><strong><%= mission.crime.name %></strong></p>
+            <span class="badge badge-pill badge-dark mb-3"><%= mission_archived.crime.category %></span>
+            <p class="crime-name"><strong><%= mission_archived.crime.name %></strong></p>
           <div>
-            <% if mission.cancelled %>
+            <% if mission_archived.cancelled %>
               <span class="badge badge-pill badge-light mb-3">cancelled</span>
             <% else %>
-              <span class="badge badge-pill badge-success mb-3"> <%= "done (#{mission.done_date})" %></span>
+              <span class="badge badge-pill badge-success mb-3"> <%= "done (#{mission_archived.done_date})" %></span>
             <% end %>
           </div>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
-            <p class="price"><%= mission.crime.price %> <%= mission.crime.currency %></p>
+            <p class="price"><%= mission_archived.crime.price %> <%= mission_archived.crime.currency %></p>
           </div>
         </div>
+          <!-- Modal Begins -->
+          <div class="modal fade" id="archive-<%= mission_archived %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content crime-card">
+                <div class="modal-header">
+                  <h5 class="modal-title crime-name" id="exampleModalLabel"><%= mission_archived.crime.name %></h5>
+                  <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-right" data-dismiss="modal">Close</button>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div>
+                    <span class="badge badge-pill badge-dark mb-3"><%= mission_archived.crime.category %></span>
+                    <div class="text-primary text-wrap text-break w-100"><%= mission_archived.description %></div>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="price-tag"><strong>Price</strong></h6>
+                    <p class="price"><%= mission_archived.crime.price %> <%= mission_archived.crime.currency %></p>
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal Ends -->
       <% end %>
     <% end %>
   </div>
