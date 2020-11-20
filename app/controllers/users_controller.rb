@@ -29,6 +29,4 @@ class UsersController < ApplicationController
     @ratings = @reviews.map { |review| review.rating }
     @average_rating = @ratings.sum.fdiv(@ratings.size)
   end
-
 end
-

@@ -9,5 +9,4 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :alias, :address, :longitude, :latitude, :job_title, :description, :profile_pic, :cover_pic])
   end
-
 end
