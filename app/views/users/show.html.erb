@@ -68,24 +68,30 @@
   <div class="row">
     <div class="col-9 d-flex flex-wrap">
       <h2 class="mb-4 mt-4 col-9">Reviews</h2>
-      <% @reviews.each do |review| %>
-        <div class="card w-100 m-3" id="no-border">
-          <div class="review-card">
-            <div class='d-flex align-items-center justify-content-between'>
-              <h5 class="review-title"><%= review.title %></h5>
-              <p class="review-text"><%= review.post_date %></p>
+
+      <% if @reviews.present? %>
+
+        <% @reviews.each do |review| %>
+          <div class="card w-100 m-3" id="no-border">
+            <div class="review-card">
+              <div class='d-flex align-items-center justify-content-between'>
+                <h5 class="review-title"><%= review.title %></h5>
+                <p class="review-text"><%= review.post_date %></p>
+              </div>
+              <div class="mb-3">
+                <% @average_rating.floor.to_i.times do %>
+                  <i class="fas fa-star text-primary"></i>
+                <% end %>
+                <% (5 - @average_rating.floor.to_i).times do %>
+                  <i class="far fa-star text-secondary"></i>
+                <% end %>
+              </div>
+              <p class="review-text"><%= review.comment %></p>
             </div>
-            <div class="mb-3">
-              <% @average_rating.floor.to_i.times do %>
-                <i class="fas fa-star text-primary"></i>
-              <% end %>
-              <% (5 - @average_rating.floor.to_i).times do %>
-                <i class="far fa-star text-secondary"></i>
-              <% end %>
-            </div>
-            <p class="review-text"><%= review.comment %></p>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <h5 class="mb-4 mt-4 col-9">No review yet</h5>
       <% end %>
     </div>
   </div>
