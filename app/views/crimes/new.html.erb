@@ -3,12 +3,14 @@
     <div class="col-12 col-md-6 m-auto">
     <h1>Add a new crime</h1>
     <h3>to your portfolio</h3>
-      <%= simple_form_for @crime do |f| %>
+      <%= simple_form_for @crime, defaults: { submit: { class: 'btn btn-primary' } } do |f| %>
       <%= f.input :name %>
       <%= f.input :category, as: :select, collection: Crime::CATEGORIES, prompt: "select one" %>
       <%= f.input :price %>
       <%= f.input :currency %>
-      <%= f.submit %>
+      <div class="btn-submit">
+        <%= f.submit %>
+      </div>
     <% end %>
     </div>
   </div>
