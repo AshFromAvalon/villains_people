@@ -12,11 +12,38 @@
     </div>
 </div>
 
-<div class="container user-infos mt-5">
+<div class="container user-infos mt-5" style="max-width: 1200px;">
   <div class="row">
+
+    <div class="col-3 more-infos p-0">
+      <% if @user.cover_pic.attached? %>
+        <%= cl_image_tag(@user.profile_pic.key, width: 200, height: 200, crop: :fill, class: 'profile-pic') %>
+      <% end %>
+      <div class="p-3">
+        <h2 class="mb-4">More infos</h2>
+        <h6>Known as</h6>
+        <p><%= @user.job_title %></p>
+        <h6>Description</h6>
+        <p><%= @user.description %></p>
+        <h6>Average rating</h6>
+        <% if @ratings == [] %>
+          <p>No rating yet</p>
+        <% else %>
+          <% @average_rating.floor.to_i.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% (5 - @average_rating.floor.to_i).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
     <div class="col-9 d-flex flex-wrap">
       <h2 class="mb-4 col-9">Crimes proposed</h2>
+      <% if current_user == @user %>
       <h2 class="col-3"><%= link_to 'New crime', new_crime_path(@user), class:'btn btn-primary rounded-pill d-inline-block ml-auto' %></h2>
+      <% end %>
 
       <% @user.crimes.each do |crime| %>
         <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
@@ -28,29 +55,12 @@
             <h6 class="price-tag"><strong>Price</strong></h6>
             <p class="price"><%= crime.price %> <%= crime.currency %></p>
             <div>
+              <% if current_user != @user %>
               <p class="text-right mb-0"><%= link_to "Order", new_crime_order_path(crime), class:'mt-2 btn btn-outline-primary rounded-pill text-right' %></p>
+              <% end %>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-
-    <div class="col-3">
-      <h2 class="mb-4">More infos</h2>
-      <h6>Known as</h6>
-      <p><%= @user.job_title %></p>
-      <h6>Description</h6>
-      <p><%= @user.description %></p>
-      <h6>Average rating</h6>
-      <% if @ratings == [] %>
-        <p>No rating yet</p>
-      <% else %>
-        <% @average_rating.floor.to_i.times do %>
-          <i class="fas fa-star"></i>
-        <% end %>
-        <% (5 - @average_rating.floor.to_i).times do %>
-          <i class="far fa-star"></i>
-        <% end %>
       <% end %>
     </div>
   </div>
@@ -68,22 +78,22 @@
                 <h5 class="review-title"><%= review.title %></h5>
                 <p class="review-text"><%= review.post_date %></p>
               </div>
-              <p class="crime-name">Rating: <%= review.rating %></p>
+              <div class="mb-3">
+                <% @average_rating.floor.to_i.times do %>
+                  <i class="fas fa-star text-primary"></i>
+                <% end %>
+                <% (5 - @average_rating.floor.to_i).times do %>
+                  <i class="far fa-star text-secondary"></i>
+                <% end %>
+              </div>
               <p class="review-text"><%= review.comment %></p>
             </div>
           </div>
         <% end %>
-
       <% else %>
         <h5 class="mb-4 mt-4 col-9">No review yet</h5>
       <% end %>
-
     </div>
   </div>
 
 </div>
-
-
-
-
-
