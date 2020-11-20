@@ -10,4 +10,8 @@
     border: 1px solid grey;
     padding: 10px;
   }
+  input[type="checkbox"]:hover + label {
+    background-color: grey;
+    padding: 10px;
+  }
 }
