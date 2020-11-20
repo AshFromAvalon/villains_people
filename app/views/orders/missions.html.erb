@@ -9,11 +9,12 @@
   </div>
 
   <!-- display all missions that are AWAITING APPROVAL -->
-  <div class="d-flex align-items-center mt-4">
+  <div class="d-flex align-items-center flex-wrap mt-4">
+
     <h3>Mission requests</h3>
     <span class="badge badge-info ml-3 mb-4"><%= @missions_tovalidate.count %></span>
   </div>
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
     <% if @missions_tovalidate.empty? %>
       <p>No crimes to validate</p>
     <% else %>
@@ -62,12 +63,12 @@
   <br>
 
   <!-- display all missions that are TO DO -->
-  <div class="d-flex align-items-center mt-3">
+  <div class="d-flex align-items-center flex-wrap mt-3">
     <h3>To do</h3>
     <span class="badge badge-info ml-3 mb-4"><%= @missions_tofinish.count %></span>
   </div>
   <ul class="list-group">
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
       <% if @missions_tofinish.empty? %>
         <p>No crimes to finish</p>
       <% else %>
@@ -116,11 +117,12 @@
   <br>
 
   <!-- display all missions that are TO PAY -->
-  <div class="d-flex align-items-center mt-3">
+
+  <div class="d-flex align-items-center mt-3 flex-wrap">
     <h3>Crimes awaiting payment</h3>
     <span class="badge badge-info ml-3 mb-4"><%= @missions_topay.count %></span>
   </div>
-  <div class="d-flex">
+  <div class="d-flex flex-wrap">
     <% if @missions_topay.empty? %>
       <p>No crimes awaiting payment</p>
     <% else %>
@@ -170,10 +172,10 @@
   </div>
 
   <!-- display all missions that are ARCHIVED -->
-  <div class="d-flex align-items-center mt-4">
+  <div class="d-flex flex-wrap align-items-center mt-4">
     <h3>Archives</h3>
   </div>
-  <div class="d-flex">
+  <div class="d-flex flex-wrap">
     <% if @missions_archived.empty? %>
       <p>No crimes in Archives</p>
     <% else %>
