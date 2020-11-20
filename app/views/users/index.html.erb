@@ -11,7 +11,7 @@
   <div class="listing">
     <h1 class="text-center text-uppercase mt-4 mb-5">All our villains</h1>
     <!-- Checkboxes -->
-    <div class="filters text-center text-secondary">
+    <div id= "filter" class="filters text-center text-secondary">
       <h4 class="mb-3">Filter by category</h4>
       <%= form_tag users_path, method: :get, class: "filter_search" do %>
         <% Crime::CATEGORIES.each do |category| %>
