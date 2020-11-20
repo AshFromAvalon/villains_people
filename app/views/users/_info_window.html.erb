@@ -11,10 +11,27 @@
 
         <div class="popup_name ml-3">
           <a href="/users/<%= user.id %>"><%= user.alias %></a>
+          <% if user.reviews.present? %>
+          <div class="row p-2">
+          <% ratings = user.reviews.map { |review| review.rating } %>
+          <% average_rating = ratings.sum.fdiv(ratings.size) %>
+
+            <% average_rating.floor.to_i.times do %>
+              <i class="fas fa-star text-white"></i>
+            <% end %>
+            <% (5 - average_rating.floor.to_i).times do %>
+              <i class="far fa-star text-white"></i>
+            <% end %>
+          <% else %>
+
+          <% end %>
+          </div>
         </div>
+
       </div>
   </div>
 
 </div>
+
 
 

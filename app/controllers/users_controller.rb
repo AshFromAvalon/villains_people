@@ -22,16 +22,9 @@ class UsersController < ApplicationController
         lat: user.latitude,
         lng: user.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { user: user }),
-        # image_url: helpers.asset_url('logo-red.png')
         image_url: url
       }
     end
-    @reviews = Review.all.select do |review|
-      review.order.user_id == params[:id].to_i
-    end
-    @ratings = @reviews.map { |review| review.rating }
-    @average_rating = @ratings.sum.fdiv(@ratings.size)
   end
-
 end
 
