@@ -22,7 +22,7 @@
       transition-duration: .3s;
       transform: scale(1.015);
     }
-    
+
     span {
       font-size: 32px;
       text-align: center;
@@ -47,6 +47,7 @@
 }
 #map {
   width: 600px;
+  height: 100vh;
 }
 
 /*Media Queries*/
@@ -60,7 +61,7 @@
     display: none;
   }
   #big-title {
-    padding-top: 35vh;
+    padding-top: 20vh;
     font-size: 72px;
   }
 }
@@ -74,7 +75,7 @@
     display: block;
   }
   #big-title {
-    padding-top: 30vh;
+    padding-top: 20vh;
     font-size: 120px;
   }
 }
