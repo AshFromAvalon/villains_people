@@ -21,8 +21,8 @@ class UsersController < ApplicationController
         lat: user.latitude,
         lng: user.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { user: user }),
-        image_url: helpers.asset_url('logo-red.png')
-        # image_url: image_url(user.id)
+        # image_url: helpers.asset_url('logo-red.png')
+        image_url: url_for(user.profile_pic)
 
       }
     end
