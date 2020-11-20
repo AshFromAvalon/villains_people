@@ -13,7 +13,7 @@
     <!-- Checkboxes -->
     <div id= "filter" class="filters text-center text-secondary">
       <h4 class="mb-3">Filter by category</h4>
-      <%= form_tag users_path, method: :get, class: "filter_search" do %>
+      <%= form_tag users_path(anchor: 'filter'), method: :get, class: "filter_search" do %>
         <% Crime::CATEGORIES.each do |category| %>
           <%= check_box_tag "category[#{category}]", category, params[:category]&.include?(category) %>
           <%= label_tag "category[#{category}]", category %>
