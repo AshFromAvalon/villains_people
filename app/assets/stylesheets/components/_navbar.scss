@@ -13,7 +13,7 @@
 }
 
 .navbar-lewagon a {
-  color: white;
+  color: white !important;
   opacity: 0.7;
   transition-duration: 1s;
 }
@@ -25,7 +25,7 @@
 }
 .navbar-lewagon a:hover {
   border-bottom: 1 px solid rgba(255,255,255,.3);
-  color: #222;
+  color: #222 !important;
 }
 
 .dropdown-menu {
