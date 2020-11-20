@@ -1,34 +1,85 @@
 .villains-cards {
-  min-height: 100vh;
-}
-.villain-card {
-  min-width: 346px;
-  max-width: 100%;
-  height: 480px;
-  background-color: #bb4848;
-  background-position: center;
-  background-size: cover;
-  margin: 0 12px;
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 16px;
+  margin: 16px;
+  max-width: 980px;
+  margin: auto;
+  padding-left: 16px;
+  padding-right: 16px;
 
+  .villain-card {
+    height: 350px;
+    background-color: #bb4848;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  span {
-    font-size: 32px;
-    text-align: center;
-    color: #FFF;
-    background-color: rgba(0,0,0,.5);
-    padding: 12px 24px;
-    opacity: 0;
-    transition-duration: .3s;
-  }
-
-  &:hover {
     span {
-      opacity: 1;
+      font-size: 32px;
+      text-align: center;
+      color: #FFF;
+      background-color: rgba(0,0,0,.5);
+      padding: 12px 24px;
+      opacity: 0;
+      transition-duration: .3s;
+      font-family: 'Work Sans';
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
     }
+
+    &:hover {
+      span {
+        opacity: 1;
+      }
+    }
+
+  }
+}
+#map {
+  width: 600px;
+}
+
+/*Media Queries*/
+
+/*Smallest device*/
+@media (min-width: 100px) and (max-width: 575px) {
+  .villains-cards {
+    grid-template-columns: 1fr;
+  }
+  #map {
+    display: none;
+  }
+  #big-title {
+    padding-top: 35vh;
+    font-size: 72px;
+  }
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+  .villains-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  #map {
+    display: block;
+  }
+  #big-title {
+    padding-top: 30vh;
+    font-size: 120px;
+  }
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 1200px) {
+  .villains-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  #big-title {
+    font-size: 170px;
   }
 }
 
