@@ -20,11 +20,11 @@ const initMapbox = () => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
 
       const userPic = document.createElement('div');
-      element.className = 'marker';
-      element.style.backgroundImage = `url('${marker.image_url}')`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '25px';
-      element.style.height = '25px';
+      userPic.className = 'marker';
+      userPic.style.backgroundImage = `url('${marker.image_url}')`;
+      userPic.style.backgroundSize = 'contain';
+      userPic.style.width = '30px';
+      userPic.style.height = '30px';
 
       new mapboxgl.Marker(userPic)
       .setLngLat([ marker.lng, marker.lat ])

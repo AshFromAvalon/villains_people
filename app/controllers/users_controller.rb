@@ -21,8 +21,9 @@ class UsersController < ApplicationController
         lat: user.latitude,
         lng: user.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { user: user }),
-        # image_url: helpers.asset_url(cl_image_path user.profile_pic.key)
-        image_url: helpers.url(cl_image_path user.profile_pic.key)
+        image_url: helpers.asset_url('logo-red.png')
+        # image_url: image_url(user.id)
+
       }
     end
     @reviews = Review.all.select do |review|

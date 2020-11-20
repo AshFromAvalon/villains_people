@@ -1,11 +1,14 @@
 <div class="mapboxgl-popup">
   <div class="row">
       <div class="mapboxgl-popup-content d-flex justify-content-between p-3">
-        <% if current_user.profile_pic.attached? %>
-          <%= cl_image_tag current_user.profile_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% else %>
-          <%= cl_image_tag "https://res.cloudinary.com/dydj5k25d/image/upload/v1605627577/Profile_avatar_placeholder_large_znjuuz.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% end %>
+        <div>
+          <% if user.profile_pic.attached? %>
+            <%= cl_image_tag user.profile_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= cl_image_tag "https://res.cloudinary.com/dydj5k25d/image/upload/v1605627577/Profile_avatar_placeholder_large_znjuuz.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+        </div>
+
         <div class="popup_name ml-3">
           <a href="/users/<%= user.id %>"><%= user.alias %></a>
         </div>
