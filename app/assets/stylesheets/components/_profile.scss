@@ -14,4 +14,18 @@
     color: #D3B16E;
     opacity: 0.4;
   }
+
+  .more-infos {
+    background: #212121;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin-top: -170px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .profile-pic {
+    width: 100%;
+    height: 240px;
+    padding: 0;
+    object-fit: cover;
+  }
 }

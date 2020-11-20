@@ -16,6 +16,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    &:hover {
+      transition-duration: .3s;
+      transform: scale(1.015);
+    }
 
     span {
       font-size: 32px;
@@ -86,6 +91,8 @@
 .crime-card {
   padding: 16px;
   background-color: #202020d0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 3px rgba(0,0,0,0.18);
+
   border-radius: 8px;
   border: 1px solid #6A5A39;
   min-height: 250px;
@@ -113,6 +120,8 @@
 .crime-modal {
   padding: 16px;
   background-color: #202020ff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
   border-radius: 8px;
   border: 1px solid #6A5A39;
   min-height: 250px;
