@@ -59,10 +59,11 @@
                 <%= simple_form_for [order, @review] do |f| %>
                   <%= f.input :title %>
                   <%= f.input :comment %>
-                  <%= f.collection_radio_buttons :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']],
+                  <%#= f.collection_radio_buttons :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']],
                     :first,
                     :last,
                     :item_wrapper_class => 'ratings collection_radio_buttons' %>
+                  <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
                     <br>
                   <div>
                     <h6 class="price-tag"><strong>Price</strong></h6>
