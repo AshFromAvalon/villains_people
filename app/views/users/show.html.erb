@@ -12,8 +12,33 @@
     </div>
 </div>
 
-<div class="container user-infos mt-5">
+<div class="container user-infos mt-5" style="max-width: 1200px;">
   <div class="row">
+
+    <div class="col-3 more-infos p-0">
+      <% if @user.cover_pic.attached? %>
+        <%= cl_image_tag(@user.profile_pic.key, width: 200, height: 200, crop: :fill, class: 'profile-pic') %>
+      <% end %>
+      <div class="p-3">
+        <h2 class="mb-4">More infos</h2>
+        <h6>Known as</h6>
+        <p><%= @user.job_title %></p>
+        <h6>Description</h6>
+        <p><%= @user.description %></p>
+        <h6>Average rating</h6>
+        <% if @ratings == [] %>
+          <p>No rating yet</p>
+        <% else %>
+          <% @average_rating.floor.to_i.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% (5 - @average_rating.floor.to_i).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
     <div class="col-9 d-flex flex-wrap">
       <h2 class="mb-4 col-9">Crimes proposed</h2>
       <% if current_user == @user %>
@@ -36,25 +61,6 @@
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
-
-    <div class="col-3">
-      <h2 class="mb-4">More infos</h2>
-      <h6>Known as</h6>
-      <p><%= @user.job_title %></p>
-      <h6>Description</h6>
-      <p><%= @user.description %></p>
-      <h6>Average rating</h6>
-      <% if @ratings == [] %>
-        <p>No rating yet</p>
-      <% else %>
-        <% @average_rating.floor.to_i.times do %>
-          <i class="fas fa-star text-primary"></i>
-        <% end %>
-        <% (5 - @average_rating.floor.to_i).times do %>
-          <i class="far fa-star text-secondary"></i>
-        <% end %>
       <% end %>
     </div>
   </div>
@@ -85,8 +91,3 @@
   </div>
 
 </div>
-
-
-
-
-
