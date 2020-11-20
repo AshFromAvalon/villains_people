@@ -12,15 +12,24 @@
     <h1 class="text-center text-uppercase mt-4 mb-5">All our villains</h1>
     <!-- Checkboxes -->
     <div class="filters text-center text-secondary">
-        <%= form_tag users_path, method: :get, class: "filter_search" do %>
+      <h4 class="mb-3">Filter by category</h4>
+      <%= form_tag users_path, method: :get, class: "filter_search" do %>
         <% Crime::CATEGORIES.each do |category| %>
           <%= check_box_tag "category[#{category}]", category, params[:category]&.include?(category) %>
           <%= label_tag "category[#{category}]", category %>
         <% end %>
-        <%= submit_tag "Apply filters", class: 'btn btn-primary' %>
+        <div class="d-block p-4">
+          <div class="d-flex justify-content-center">
+            <%= submit_tag "Apply filters", class: 'btn btn-primary mr-2' %>
       <% end %>
+      <%= form_tag users_path, method: :get, class: "filter_search" do %>
+        <% check_box_tag "category[]" %>
+        <%= submit_tag "Clear filters", class: 'btn btn-outline-primary ml-2' %>
+      <% end %>
+        </div>
+      </div>
     </div>
-    <div class="villains-cards d-flex flex-wrap mt-4 justify-content-center">
+    <div class="villains-cards d-flex flex-wrap mt-4">
       <% @users.each do |user| %>
         <% if user.cover_pic.attached? %>
           <a href="/users/<%= user.id %>" class="villain-card" style="background-image: url(<%= cl_image_path user.profile_pic.key, height: 300, width: 400, crop: :fill %>);">
