@@ -23,6 +23,10 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     @order.crime = Crime.find(params[:crime_id])
+    @order.done = false
+    @order.cancelled = false
+    @order.paid = false
+    @order.validated = false
     if @order.save
       flash[:alert] = 'order saved'
       redirect_to orders_path
