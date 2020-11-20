@@ -12,11 +12,13 @@
     </div>
 </div>
 
-<div class="container user-infos mt-5">
+<div class="container user-infos mt-5" style="max-width: 1200px;">
   <div class="row">
 
     <div class="col-3 more-infos p-0">
-      <%= cl_image_tag(@user.profile_pic.key, width: 200, height: 200, crop: :fill, class: 'profile-pic') %>
+      <% if @user.cover_pic.attached? %>
+        <%= cl_image_tag(@user.profile_pic.key, width: 200, height: 200, crop: :fill, class: 'profile-pic') %>
+      <% end %>
       <div class="p-3">
         <h2 class="mb-4">More infos</h2>
         <h6>Known as</h6>
