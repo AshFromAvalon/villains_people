@@ -22,7 +22,7 @@
           <div class="d-flex justify-content-center">
             <%= submit_tag "Apply filters", class: 'btn btn-primary mr-2' %>
       <% end %>
-      <%= form_tag users_path, method: :get, class: "filter_search" do %>
+      <%= form_tag users_path(anchor: 'filter'), method: :get, class: "filter_search" do %>
         <% check_box_tag "category[]" %>
         <%= submit_tag "Clear filters", class: 'btn btn-outline-primary ml-2' %>
       <% end %>
