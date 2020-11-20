@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def index
     if params[:category] && params[:category].keys.any?
       @users = User.includes(:crimes).where(crimes: { category: params[:category].keys })
-      # redirect_to 'users/#filter'
+      render :index, anchor: "filter"
     else
       @users =  User.includes(:crimes).where.not('crimes.id' => nil)
     end
