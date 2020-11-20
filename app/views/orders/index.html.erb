@@ -12,7 +12,7 @@
           <div>
             <div class='d-flex align-items-center justify-content-between mb-2'>
               <span class="badge badge-pill badge-light"><%= order.crime.category %></span>
-              <span class="badge badge-pill badge-primary">Villain: <%= order.crime.user.user_name %></span>
+              <span class="badge badge-pill badge-primary"><%= order.crime.user.alias %></span>
             </div>
             <p class="crime-name mb-2"><strong><%= order.crime.name %></strong></p>
             <p class="crime-name text-truncate"><%= order.description %></p>
@@ -85,7 +85,7 @@
           <div>
             <div class='d-flex align-items-center justify-content-between mb-2'>
               <span class="badge badge-pill badge-light"><%= order.crime.category %></span>
-              <span class="badge badge-pill badge-primary">Villain: <%= order.crime.user.user_name %></span>
+              <span class="badge badge-pill badge-primary"><%= order.crime.user.alias %></span>
             </div>
             <p class="crime-name mb-2"><strong><%= order.crime.name %></strong></p>
             <p class="crime-name text-truncate"><%= order.description %></p>
