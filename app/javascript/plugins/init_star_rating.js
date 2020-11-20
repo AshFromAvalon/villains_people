@@ -1,8 +1,11 @@
 import "jquery-bar-rating";
-import $ from 'jquery'; // <-- if you're NOT using a Le Wagon template (cf jQuery section)
+import $ from 'jquery';
 
 const initStarRating = () => {
-  // TODO
+  $('#review_rating').barrating({
+    theme: 'css-stars'
+  });
 };
+
 
 export { initStarRating };
