@@ -8,11 +8,14 @@
   <h3 class="mt-4">Ongoing orders</h3>
   <div class="d-flex flex-wrap">
     <% @ongoing_orders.each do |order| %>
-      <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
+      <div class="crime-card-order m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
           <div>
-            <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
-            <p class="crime-name mb-1"><strong><%= order.crime.name %></strong></p>
-            <p class="text-secondary">Ordered by <%= order.crime.user.user_name %></p>
+            <div class='d-flex align-items-center justify-content-between mb-2'>
+              <span class="badge badge-pill badge-light"><%= order.crime.category %></span>
+              <span class="badge badge-pill badge-primary">Villain: <%= order.crime.user.user_name %></span>
+            </div>
+            <p class="crime-name mb-2"><strong><%= order.crime.name %></strong></p>
+            <p class="crime-name text-truncate"><%= order.description %></p>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
@@ -20,19 +23,19 @@
             <% if order.done %>
               <div class='d-flex align-items-center justify-content-between'>
                 <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-                <button type="button" class="mt-2 btn btn-outline-success rounded-pill text-right" data-toggle="modal" data-target="#pay-<%= order.id %>">
+                <button type="button" class="btn btn-outline-success rounded-pill text-right" data-toggle="modal" data-target="#pay-<%= order.id %>">
                   Pay villain
                 </button>
               </div>
             <% elsif order.validated %>
               <div class='d-flex align-items-center justify-content-between'>
-                <span class="badge badge-primary badge-pill">ongoing</span>
-                <%= link_to "cancel", cancel_order_path(order), method: :patch, class: "mt-2 btn btn-outline-warning rounded-pill text-right", data: { confirm: "Are you sure?" }%>
+                <span class="badge badge-warning badge-pill">ongoing</span>
+                <%= link_to "cancel", cancel_order_path(order), method: :patch, class: "btn btn-outline-warning rounded-pill text-right", data: { confirm: "Are you sure?" }%>
               </div>
             <% else %>
               <div class='d-flex align-items-center justify-content-between'>
                 <span class="badge badge-warning badge-pill">ordered</span>
-                <%= link_to "cancel", cancel_order_path(order), method: :patch, class: "mt-2 btn btn-outline-danger rounded-pill text-right", data: { confirm: "Are you sure?" }%>
+                <%= link_to "cancel", cancel_order_path(order), method: :patch, class: "btn btn-outline-danger rounded-pill text-right", data: { confirm: "Are you sure?" }%>
               </div>
             <% end %>
           </div>
@@ -48,7 +51,7 @@
               </div>
               <div class="modal-body">
                 <div>
-                  <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
+                  <span class="badge badge-pill badge-dark"><%= order.crime.category %></span>
                   <div class="text-primary text-wrap text-break w-100"><%= order.description %></div>
                 </div>
                 <br>
@@ -65,7 +68,7 @@
                     <h6 class="price-tag"><strong>Price</strong></h6>
                     <p class="price"><%= order.crime.price %> <%= order.crime.currency %></p>
                   </div>
-                  <%= f.submit 'Confirm Payment', class: "mt-2 btn btn-outline-success rounded-pill text-right" %>
+                  <%= f.submit 'Review & Pay', class: "btn btn-outline-primary rounded-pill text-right" %>
                 <% end %>
               </div>
             </div>
@@ -78,27 +81,35 @@
     <h3 class="mt-5">Archived orders</h3>
   <div class="d-flex flex-wrap">
     <% @archived_orders.each do |order| %>
-      <div class="crime-card m-3 col-12 col-md-3 d-flex flex-column justify-content-between" type="button" data-toggle="modal" data-target="#finished-<%= order.id %>">
+      <div class="crime-card-order m-3 col-12 col-md-3 d-flex flex-column justify-content-between">
           <div>
-            <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
-            <p class="crime-name mb-1"><strong><%= order.crime.name %></strong></p>
-            <p class="text-secondary">Ordered by <%= order.crime.user.user_name %></p>
+            <div class='d-flex align-items-center justify-content-between mb-2'>
+              <span class="badge badge-pill badge-light"><%= order.crime.category %></span>
+              <span class="badge badge-pill badge-primary">Villain: <%= order.crime.user.user_name %></span>
+            </div>
+            <p class="crime-name mb-2"><strong><%= order.crime.name %></strong></p>
+            <p class="crime-name text-truncate"><%= order.description %></p>
           </div>
           <div>
             <h6 class="price-tag"><strong>Price</strong></h6>
             <p class="price"><%= order.crime.price %> <%= order.crime.currency %></p>
-            <% if order.done && order.review == nil%>
-              <div class='d-flex align-items-center justify-content-between'>
-                <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-              </div>
-            <% elsif order.done && order.review != nil %>
-              <div class='d-flex align-items-center justify-content-between'>
-                <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
-                <span class="badge badge-light badge-pill">Paid & Reviewed</span>
-              </div>
-            <% else %>
-              <span class="badge badge-dark badge-pill">cancelled</span>
-            <% end %>
+            <div class='d-flex align-items-center justify-content-between'>
+              <% if order.done && order.review == nil%>
+                <div class='d-flex align-items-center justify-content-between'>
+                  <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
+                </div>
+              <% elsif order.done && order.review != nil %>
+                <div class='d-flex align-items-center justify-content-between'>
+                  <span class="badge badge-success badge-pill"><%= "done (#{order.done_date})" %></span>
+                  <span class="badge badge-light badge-pill">Paid & Reviewed</span>
+                </div>
+              <% else %>
+                <span class="badge badge-dark badge-pill">cancelled</span>
+              <% end %>
+              <button type="button" class="btn btn-outline-secondary rounded-pill text-right" data-toggle="modal" data-target="#finished-<%= order.id %>">
+                    See details
+              </button>
+            </div>
           </div>
         </div>
         <!-- Modal Begins -->
@@ -112,7 +123,7 @@
               </div>
               <div class="modal-body">
                 <div>
-                  <span class="badge badge-pill badge-dark mb-3"><%= order.crime.category %></span>
+                  <span class="badge badge-pill badge-dark"><%= order.crime.category %></span>
                   <div class="text-primary text-wrap text-break w-100"><%= order.description %></div>
                 </div>
               </div>

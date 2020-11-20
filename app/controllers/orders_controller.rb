@@ -67,6 +67,13 @@ class OrdersController < ApplicationController
     redirect_to missions_orders_path
   end
 
+  def refuse
+    set_order
+    @order.cancelled = true
+    @order.save
+    redirect_to missions_orders_path
+  end
+
   # paid = true PATCH order
   def pay
     set_order
